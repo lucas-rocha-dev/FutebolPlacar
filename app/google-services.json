@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "361551571068",
+    "firebase_url": "https://testebancodedados-de8b3-default-rtdb.firebaseio.com",
+    "project_id": "testebancodedados-de8b3",
+    "storage_bucket": "testebancodedados-de8b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:361551571068:android:19ed375185220106bd81f9",
+        "android_client_info": {
+          "package_name": "com.futebolplacar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAItzJTC7yc43K6dn1mnwdywLswC0qAshs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
