@@ -39,7 +39,7 @@ fun classificacaoGeralCompose(viewModel: ViewModelFut){
     viewModel.setNameWindow("Brasileirão Série A")
     val carregamentoServe by viewModel.carregandoServe.collectAsState()
 
-   
+
 
 
     val listClassificacaoGeral  by viewModel.classificacaoGeral.collectAsState()
