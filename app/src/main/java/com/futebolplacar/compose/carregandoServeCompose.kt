@@ -31,7 +31,6 @@ fun carregandoServeCompose(naveController: NavController, viewModel: ViewModelFu
         }
         LaunchedEffect(carregamentoServe) {
             delay(3000)
-            viewModel.classificacaoGeral.value.clear()
             naveController.navigate("classificacaoGeralCompose")
 
         }

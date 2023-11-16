@@ -50,7 +50,6 @@ class ViewModelFut: ViewModel() {
 
 
 
-
     fun setCarregandoServe(contextExec: String){
         when(contextExec) {
             "selectCampeonato" -> {
@@ -90,24 +89,53 @@ class ViewModelFut: ViewModel() {
     }
 
 
-    fun setFirestore(
-        jogosRodadaRef: String,
-        classificacaoRef: String,
-        artilhariaRef: String,
-        rodadaRef: String,
-        viewModel: ViewModelFut
+    fun setFirestore(viewModel: ViewModelFut,
+                     request: String
     ) = viewModelScope.launch {
         try {
+            var jogosRodadaRef = ""
+            var classificacaoRef = ""
+            var artilhariaRef= ""
+            var rodadaRef= ""
+
+            when(campeonato.value){
+                "Brasileiro A" -> {
+                    jogosRodadaRef = "jogos_rodada"
+                    classificacaoRef = "classificacao_geral"
+                    artilhariaRef = "artilharia"
+                    rodadaRef= "rodada_atual"
+                    Log.e("campeonato atual", campeonato.value)
+                }
+                "La Liga" -> {
+                    jogosRodadaRef = "jogos_rodada_la_liga"
+                    classificacaoRef = "classificacao_geral_la_liga"
+                    artilhariaRef = "artilharia_la_liga"
+                    rodadaRef= "rodada_atual_la_liga"
+                }
+                else -> {
+                    Log.e("campeonato atual", "Erro durante a execução")
+                }
+            }
+
             val db = FirebaseFirestore.getInstance()
             val docRefRodadas = db.collection(jogosRodadaRef)
             val docRefClassificacaoGeral = db.collection(classificacaoRef)
             val docRefArtilharia = db.collection(artilhariaRef)
             val docRefRodadaAtual = db.collection(rodadaRef)
 
-            getRodadas(docRefRodadas, viewModel)
-            getClassificacaoGeral(docRefClassificacaoGeral, viewModel)
-            getArtilharia(docRefArtilharia, viewModel)
-            getRodadaAtual(docRefRodadaAtual, viewModel)
+            if(request == "classficicacaoGeral"){
+                getClassificacaoGeral(docRefClassificacaoGeral, viewModel)
+            }
+            if(request == "rodadas"){
+                getRodadas(docRefRodadas, viewModel)
+                getRodadaAtual(docRefRodadaAtual, viewModel)
+
+            }
+            if(request == "artilharia"){
+                getArtilharia(docRefArtilharia, viewModel)
+            }
+
+
 
         } catch (exception: Exception) {
             Log.e("setFirestore", "Erro durante a execução: ${exception.message}", exception)

@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.futebolplacar.R
+import com.futebolplacar.firestore.getRodadas
 import com.futebolplacar.viewModel.ViewModelFut
 
 @SuppressLint("StateFlowValueCalledInComposition")
@@ -48,16 +49,10 @@ fun selectCampeonato(viewModel: ViewModelFut, naveController: NavController){
                     contentDescription = "Image Brasileira A",
                     modifier = Modifier
                         .clickable {
-                            viewModel.setCampeonatoAtual("Brasileirao A")
+                            viewModel.setCampeonatoAtual("Brasileiro A")
+                            viewModel.setFirestore(viewModel, "classficicacaoGeral")
 
-                            viewModel.setFirestore(
-                                "jogos_rodada", "classificacao_geral",
-                                "artilharia", "rodada_atual", viewModel
-                            )
-
-                            naveController.navigate("carregandoServeCompose")
-
-
+                            naveController.navigate("classificacaoGeralCompose")
                         })
 
                 Image(painterResource(id = R.drawable.logo_brasileirao_b),
@@ -73,12 +68,8 @@ fun selectCampeonato(viewModel: ViewModelFut, naveController: NavController){
                     contentDescription = "Image La Liga",
                     modifier = Modifier
                         .clickable {
-
-
-                            viewModel.setFirestore(
-                                "jogos_rodada_la_liga", "classificacao_geral_la_liga",
-                                "artilharia_la_liga", "rodada_atual_la_liga", viewModel
-                            )
+                            viewModel.setCampeonatoAtual("La Liga")
+                            viewModel.setFirestore(viewModel, "classficicacaoGeral")
                             naveController.navigate("carregandoServeCompose")
 
                         })
