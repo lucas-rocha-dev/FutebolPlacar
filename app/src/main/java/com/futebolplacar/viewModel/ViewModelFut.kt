@@ -26,6 +26,10 @@ class ViewModelFut: ViewModel() {
     private val _nameWindow = MutableStateFlow(" ")
     val nameWindow = _nameWindow.asStateFlow()
 
+
+    private val _campeonato = MutableStateFlow("")
+    val campeonato = _campeonato.asStateFlow()
+
     private val _classificacaoGeral = MutableStateFlow<MutableList<ClassificacaoGeralA>>(mutableListOf())
     val classificacaoGeral = _classificacaoGeral.asStateFlow()
 
@@ -63,6 +67,9 @@ class ViewModelFut: ViewModel() {
     }
 
 
+    fun setCampeonatoAtual(campeonato: String){
+        _campeonato.value = campeonato
+    }
 
     fun setNameWindow(name: String){
         _nameWindow.value = name

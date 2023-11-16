@@ -48,12 +48,12 @@ fun selectCampeonato(viewModel: ViewModelFut, naveController: NavController){
                     contentDescription = "Image Brasileira A",
                     modifier = Modifier
                         .clickable {
+                            viewModel.setCampeonatoAtual("Brasileirao A")
 
                             viewModel.setFirestore(
                                 "jogos_rodada", "classificacao_geral",
                                 "artilharia", "rodada_atual", viewModel
                             )
-
 
                             naveController.navigate("carregandoServeCompose")
 

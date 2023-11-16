@@ -84,8 +84,6 @@ class MainActivity : ComponentActivity() {
                             }
 
 
-
-
                             Box(modifier = Modifier.fillMaxSize() ){
 
                                 val interactionSource = remember { MutableInteractionSource() }
