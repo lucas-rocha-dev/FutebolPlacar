@@ -1,2 +1,6 @@
 /build
 app/google-services.json
+/local.properties
+local.properties
+/gradle
+/.idea

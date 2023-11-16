@@ -34,16 +34,11 @@ fun carregandoServeCompose(naveController: NavController, viewModel: ViewModelFu
             viewModel.classificacaoGeral.value.clear()
             naveController.navigate("classificacaoGeralCompose")
 
-
-
         }
 
     } else {
         naveController.navigate("selectCampeonato")
 
     }
-
-
-
 
 }

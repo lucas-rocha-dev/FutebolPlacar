@@ -26,8 +26,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.futebolplacar.Armazem
-
 import com.futebolplacar.datasource.ClassificacaoGeralA
 import com.futebolplacar.funCompose.verificTime
 import com.futebolplacar.viewModel.ViewModelFut
@@ -38,8 +36,6 @@ import kotlinx.coroutines.delay
 fun classificacaoGeralCompose(viewModel: ViewModelFut){
     viewModel.setNameWindow("Brasileirão Série A")
     val carregamentoServe by viewModel.carregandoServe.collectAsState()
-
-
 
 
     val listClassificacaoGeral  by viewModel.classificacaoGeral.collectAsState()
