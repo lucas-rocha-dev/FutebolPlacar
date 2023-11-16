@@ -24,9 +24,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.futebolplacar.R
+import com.futebolplacar.viewModel.ViewModelFut
 
 @Composable
-fun navegationBar(navController: NavController){
+fun navegationBar(navController: NavController, viewModel: ViewModelFut){
     Row(horizontalArrangement = Arrangement.Center,
         modifier = Modifier
 
@@ -63,7 +64,13 @@ fun navegationBar(navController: NavController){
                 .padding(start = 5.dp)
                 .width(100.dp)
                 .height(50.dp)
-                .clickable { navController.navigate("rodadasCompose") }
+                .clickable {
+                    if (viewModel.jogosDaRodada.value.size < 1){
+                        viewModel.setFirestore(viewModel, "rodadas")
+
+                    }
+                    navController.navigate("rodadasCompose")
+                }
                 .background(
                     brush = Brush.horizontalGradient(
                         colors = listOf(Color(0xFF092B0B), Color(0xFF195E1B)),
@@ -86,7 +93,12 @@ fun navegationBar(navController: NavController){
                 .padding(start = 5.dp)
                 .width(100.dp)
                 .height(50.dp)
-                .clickable { navController.navigate("artilhariaCompose") }
+                .clickable {
+                    if (viewModel.artilharia.value.artilheiros.size < 1) {
+                        viewModel.setFirestore(viewModel, "artilharia")
+                    }
+                    navController.navigate("artilhariaCompose")
+                }
                 .background(
                     brush = Brush.horizontalGradient(
                         colors = listOf(Color(0xFF092B0B), Color(0xFF195E1B)),

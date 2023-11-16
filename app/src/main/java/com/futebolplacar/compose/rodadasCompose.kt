@@ -47,7 +47,13 @@ fun rodadasCompose(viewModel: ViewModelFut){
     val n_rodada by viewModel.nRodada.collectAsState()
 
    val classificacaoGeralA = getRodadas.sortedBy { it.n_rodada.toInt() }
-    rodadasFilter(classificacaoGeralA, n_rodada, viewModel)
+    if(classificacaoGeralA.size > 2){
+        rodadasFilter(classificacaoGeralA, n_rodada, viewModel)
+    } else {
+        Text(modifier = Modifier.padding(top = 40.dp, start = 60.dp),text = "Carregando...",
+            fontSize = 30.sp, color = Color.White)
+    }
+
 
 }
 

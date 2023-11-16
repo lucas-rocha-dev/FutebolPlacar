@@ -3,9 +3,6 @@ package com.futebolplacar.viewModel
 
 
 import android.util.Log
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.futebolplacar.Armazem
@@ -20,7 +17,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 class ViewModelFut: ViewModel() {
     private val _nameWindow = MutableStateFlow(" ")
@@ -50,11 +46,13 @@ class ViewModelFut: ViewModel() {
 
 
 
-    fun setCarregandoServe(contextExec: String){
+    fun setConfigView(contextExec: String){
         when(contextExec) {
             "selectCampeonato" -> {
                 _carregandoServe.value = true
                 Armazem.selectCampeonato = true
+
+
             }
             "classificacaoGeralCompose" -> {
                 _carregandoServe.value = false
@@ -78,8 +76,8 @@ class ViewModelFut: ViewModel() {
         _classificacaoGeral.value = classificacaoGeral
     }
 
-    fun setJogosDaRodada(jogosDaRodada:  MutableList<RodadasA>){
-        _jogosDaRodada.value = jogosDaRodada
+    fun setJogosDaRodada(jogosDaRodadaView:  MutableList<RodadasA>){
+        _jogosDaRodada.value = jogosDaRodadaView
     }
     fun setArtilharia(artilharia: Artilharia){
         _artilharia.value = artilharia
@@ -106,11 +104,24 @@ class ViewModelFut: ViewModel() {
                     rodadaRef= "rodada_atual"
                     Log.e("campeonato atual", campeonato.value)
                 }
+                "Brasileiro B" -> {
+                    jogosRodadaRef = "jogos_rodada_b"
+                    classificacaoRef = "classificacao_geral_b"
+                    artilhariaRef = "artilharia_b"
+                    rodadaRef= "rodada_atual_b"
+                    Log.e("campeonato atual", campeonato.value)
+                }
                 "La Liga" -> {
                     jogosRodadaRef = "jogos_rodada_la_liga"
                     classificacaoRef = "classificacao_geral_la_liga"
                     artilhariaRef = "artilharia_la_liga"
                     rodadaRef= "rodada_atual_la_liga"
+                }
+                "Premier" -> {
+                    jogosRodadaRef = "jogos_rodada_premier"
+                    classificacaoRef = "classificacao_geral_premier"
+                    artilhariaRef = "artilharia_premier"
+                    rodadaRef= "rodada_atual_premier"
                 }
                 else -> {
                     Log.e("campeonato atual", "Erro durante a execução")

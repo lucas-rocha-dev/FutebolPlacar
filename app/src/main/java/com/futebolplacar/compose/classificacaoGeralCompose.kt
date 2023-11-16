@@ -14,7 +14,6 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -29,17 +28,21 @@ import androidx.compose.ui.unit.sp
 import com.futebolplacar.datasource.ClassificacaoGeralA
 import com.futebolplacar.funCompose.verificTime
 import com.futebolplacar.viewModel.ViewModelFut
-import kotlinx.coroutines.delay
 
 
 @Composable
 fun classificacaoGeralCompose(viewModel: ViewModelFut){
     viewModel.setNameWindow("Brasileirão Série A")
-    val carregamentoServe by viewModel.carregandoServe.collectAsState()
+    viewModel.setConfigView("classificacaoGeralCompose")
 
 
     val listClassificacaoGeral  by viewModel.classificacaoGeral.collectAsState()
     val classificacaoGeralA = listClassificacaoGeral.sortedByDescending { it.P }
+    
+    if (classificacaoGeralA.size < 2){
+        Text(modifier = Modifier.padding(top = 40.dp, start = 60.dp),text = "Carregando...",
+            fontSize = 30.sp, color = Color.White)
+    }
 
 
     LazyColumn(modifier = Modifier
@@ -60,10 +63,7 @@ fun classificacaoGeralCompose(viewModel: ViewModelFut){
         }
  }
 
-    LaunchedEffect(carregamentoServe) {
-        delay(3000)
-        viewModel.setCarregandoServe("classificacaoGeralCompose")
-    }
+
 
 
 }

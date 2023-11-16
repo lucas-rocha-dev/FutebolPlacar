@@ -5,7 +5,7 @@ import java.util.stream.IntStream.range
 
 
 data class Artilharia(
-    val artilheiros: List<Posicao> = emptyList()
+    var artilheiros: List<Posicao> = emptyList()
 
 )
 data class Posicao(

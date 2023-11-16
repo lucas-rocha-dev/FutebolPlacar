@@ -83,7 +83,6 @@ class MainActivity : ComponentActivity() {
                                 topBar(viewModel)
                             }
 
-
                             Box(modifier = Modifier.fillMaxSize() ){
 
                                 val interactionSource = remember { MutableInteractionSource() }
@@ -96,7 +95,7 @@ class MainActivity : ComponentActivity() {
                                         bottom = 130.dp
                                     )) {
                                     if(!Armazem.selectCampeonato) {
-                                        navegationBar(navController)
+                                        navegationBar(navController, viewModel)
                                     }
 
                                     MyAppNavHost(navController, context, viewModel)
