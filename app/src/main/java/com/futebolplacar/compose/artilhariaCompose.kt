@@ -28,10 +28,7 @@ import com.futebolplacar.viewModel.ViewModelFut
 
 @Composable
 fun artilhariaCompose(viewModel: ViewModelFut){
-    viewModel.setNameWindow("Artilharia")
 
-
-    //val artilharia = Armazem.artilharia.artilheiros.sortedBy { it.rank.toInt() }
     val artilhariaGet by viewModel.artilharia.collectAsState()
     val artilharia = artilhariaGet.artilheiros.sortedBy { it.rank.toInt() }
 

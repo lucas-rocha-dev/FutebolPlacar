@@ -35,46 +35,26 @@ fun columnavegationCompose(navController: NavController, context: Context){
             )
         )
         .border(0.5.dp, Color.Green)
-        .padding(top = 10.dp, start = 10.dp, end = 10.dp)) {
+        .padding(top = 10.dp, start = 10.dp, end = 10.dp))
+         {
+
         Row(modifier = Modifier
-            .clickable { navController.navigate("classificacaoGeralCompose")
+            .clickable { navController.navigate("selectCampeonato")
                 Armazem.columView = false
             })
         {
             Image(painterResource(id = R.drawable.icon_trofeu),
-                contentDescription = "Classificacao Geral",
+                contentDescription = "Seleção de Campeonato",
                 modifier = Modifier.size(40.dp,30.dp)
             )
 
-            Text(text = "Classificação Geral", color = Color.White, fontSize = 20.sp)
+            Text(text = "Seleção de Campeonato", color = Color.White, fontSize = 20.sp)
 
         }
 
-        Row(modifier = Modifier
-            .clickable {
-                navController.navigate("rodadasCompose")
-                Armazem.columView = false
-            }
-            .padding(top = 10.dp)) {
-            Image(painterResource(id = R.drawable.icon_bola),
-                contentDescription = "Rodadas",
-                modifier = Modifier.size(40.dp,30.dp)
-            )
-            Text(text = "Jogos da Rodada", color = Color.White, fontSize = 20.sp)
-        }
 
-        Row(modifier = Modifier
-            .clickable {
-                navController.navigate("artilhariaCompose")
-                Armazem.columView = false
-            }
-            .padding(top = 10.dp)) {
-            Image(painterResource(id = R.drawable.icon_estatistica),
-                contentDescription = "Artilharia",
-                modifier = Modifier.size(40.dp,30.dp)
-            )
-            Text(text = "Artilharia", color = Color.White, fontSize = 20.sp)
-        }
+
+
 
 
 
@@ -87,11 +67,11 @@ fun columnavegationCompose(navController: NavController, context: Context){
             }
             .padding(top = 10.dp)) {
             Image(painterResource(id = R.drawable.icon_politica),
-                contentDescription = "Poltica Privacidade",
+                contentDescription = "Politica de Privacidade",
                 modifier = Modifier
                     .size(40.dp, 40.dp)
             )
-            Text(text = "Poltica Privacidade", color = Color.White, fontSize = 20.sp,
+            Text(text = "Politica Privacidade", color = Color.White, fontSize = 20.sp,
                 modifier = Modifier.padding(start = 4.dp))
         }
 

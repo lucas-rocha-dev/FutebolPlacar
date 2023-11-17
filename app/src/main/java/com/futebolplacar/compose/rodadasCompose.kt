@@ -39,10 +39,7 @@ import com.futebolplacar.viewModel.ViewModelFut
 
 @Composable
 fun rodadasCompose(viewModel: ViewModelFut){
-   viewModel.setNameWindow("Rodadas Série A")
 
-
-   //val armazemRodadasA = Armazem.jogosDaRodada
     val getRodadas by viewModel.jogosDaRodada.collectAsState()
     val n_rodada by viewModel.nRodada.collectAsState()
 

@@ -41,22 +41,20 @@ class ViewModelFut: ViewModel() {
     private val _nRodada = MutableStateFlow(1)
     val nRodada = _nRodada.asStateFlow()
 
-    private val _carregandoServe = MutableStateFlow(false)
-    val carregandoServe = _carregandoServe.asStateFlow()
+
 
 
 
     fun setConfigView(contextExec: String){
         when(contextExec) {
             "selectCampeonato" -> {
-                _carregandoServe.value = true
                 Armazem.selectCampeonato = true
-
 
             }
             "classificacaoGeralCompose" -> {
-                _carregandoServe.value = false
                 Armazem.selectCampeonato = false
+
+
             }
 
         }
@@ -103,6 +101,8 @@ class ViewModelFut: ViewModel() {
                     artilhariaRef = "artilharia"
                     rodadaRef= "rodada_atual"
                     Log.e("campeonato atual", campeonato.value)
+
+
                 }
                 "Brasileiro B" -> {
                     jogosRodadaRef = "jogos_rodada_b"

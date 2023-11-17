@@ -30,7 +30,6 @@ import androidx.navigation.compose.rememberNavController
 import com.futebolplacar.adMob.AdMob
 import com.futebolplacar.compose.PoliticPrivac
 import com.futebolplacar.compose.artilhariaCompose
-import com.futebolplacar.compose.carregandoServeCompose
 import com.futebolplacar.compose.classificacaoGeralCompose
 import com.futebolplacar.compose.columnavegationCompose
 import com.futebolplacar.compose.navegationBar
@@ -79,9 +78,9 @@ class MainActivity : ComponentActivity() {
 
                         Column {
 
-                            if(!Armazem.selectCampeonato){
+
                                 topBar(viewModel)
-                            }
+
 
                             Box(modifier = Modifier.fillMaxSize() ){
 
@@ -151,6 +150,5 @@ fun MyAppNavHost(
 
         composable("selectCampeonato") {selectCampeonato(viewModel, navController)}
 
-        composable("carregandoServeCompose") { carregandoServeCompose(navController, viewModel)}
     }
 }

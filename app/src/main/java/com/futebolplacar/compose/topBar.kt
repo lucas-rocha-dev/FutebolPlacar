@@ -1,6 +1,7 @@
 package com.futebolplacar.compose
 
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,11 +24,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.futebolplacar.Armazem
 import com.futebolplacar.Armazem.lastClickTime
+import com.futebolplacar.R
+import com.futebolplacar.funCompose.verificLogoCampeonato
 import com.futebolplacar.viewModel.ViewModelFut
 
 
@@ -35,6 +39,8 @@ import com.futebolplacar.viewModel.ViewModelFut
 fun topBar(viewModel: ViewModelFut){
 
     val nameWindow by viewModel.nameWindow.collectAsState()
+
+    val logoCampeonato = verificLogoCampeonato(viewModel, nameWindow)
 
     Box(
         modifier = Modifier
@@ -53,7 +59,7 @@ fun topBar(viewModel: ViewModelFut){
                 } else {
                     Armazem.columView = false
                 }
-                Log.d("Colum", Armazem.columView.toString())
+
 
             }
             .padding(start = 10.dp)
@@ -63,11 +69,18 @@ fun topBar(viewModel: ViewModelFut){
             tint = Color.White,
             contentDescription = "menu superior")
 
+
         Text(text = nameWindow, color = Color.White, fontSize = 20.sp,
-            modifier = Modifier.padding(start = 20.dp),
+            modifier = Modifier.padding(start = 20.dp, end = 10.dp),
             textAlign = TextAlign.Center)
 
-        Column(modifier = Modifier
+
+        Image(painterResource(id = logoCampeonato),
+            contentDescription = "Logo Campeonato",
+            modifier = Modifier.size(40.dp, 40.dp))
+
+
+            Column(modifier = Modifier
             .padding(end = 5.dp)
             .fillMaxWidth(),
             verticalArrangement = Arrangement.Top,
@@ -77,8 +90,7 @@ fun topBar(viewModel: ViewModelFut){
 
                 if (System.currentTimeMillis() - lastClickTime > 30000) {
 
-                    //getFirestoreSerieA()
-                    // COLOCAR AQUI A CHAMADA PARA FUNCAO DE ATUALIZAÇÃO DAS INFO
+
                     Armazem.lastClickTime = System.currentTimeMillis()
                 } else {
                 }

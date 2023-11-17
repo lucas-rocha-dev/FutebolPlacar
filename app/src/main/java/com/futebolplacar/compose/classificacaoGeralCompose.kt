@@ -32,7 +32,6 @@ import com.futebolplacar.viewModel.ViewModelFut
 
 @Composable
 fun classificacaoGeralCompose(viewModel: ViewModelFut){
-    viewModel.setNameWindow("Brasileirão Série A")
     viewModel.setConfigView("classificacaoGeralCompose")
 
 
