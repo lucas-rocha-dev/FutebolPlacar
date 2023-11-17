@@ -11,15 +11,13 @@ fun verificIcon(name: String, viewModel: ViewModelFut): Int{
     when(campeonato) {
         "Brasileirao A" -> imageTime = iconSerieA(name)
         "Brasileiro B" -> imageTime = iconSerieB(name)
-        "La Liga" -> imageTime = iconSerieA(name)
+        "La Liga" -> imageTime = iconLaLiga(name)
         "Premier" -> imageTime = iconSerieA(name)
         else -> imageTime = R.drawable.icon_error
 
     }
 
-
     return imageTime
-
 
 }
 fun iconSerieA(name: String): Int{
@@ -148,3 +146,36 @@ fun iconSerieB(name: String): Int{
     }
     return imageTime
 }
+
+fun iconLaLiga(name:String):Int{
+    val imageTime: Int
+
+    when(name) {
+
+        "Girona", "GIR" -> imageTime = R.drawable.icon_girona
+        "Real Madrid", "MAD" -> imageTime = R.drawable.icon_real_madrid
+        "Barcelona", "BAR" -> imageTime = R.drawable.icon_barcelona
+        "Atlético de Madrid", "ATL", "Atlético"  -> imageTime = R.drawable.icon_atletico_madrid
+        "Athletic Bilbao", "ATH" , "Athletic"-> imageTime = R.drawable.icon_athletic_bilbao
+        "Real Sociedad","RSO" -> imageTime = R.drawable.icon_real_sociedad
+        "Betis", "BET", "Real Betis" -> imageTime = R.drawable.icon_betis
+        "Las Palmas","LPA" -> imageTime = R.drawable.icon_la_palmas
+        "Valencia", "VAL" -> imageTime = R.drawable.icon_valencia
+        "Rayo Vallecano", "RVL" -> imageTime = R.drawable.icon_rayo_vallecano
+        "Getafe", "GET" -> imageTime = R.drawable.icon_getafe
+        "Osasuna","OSA" -> imageTime = R.drawable.icon_osasuna
+        "Sevila", "SEV" -> imageTime = R.drawable.icon_sevilla
+        "Villarreal" ,"VIL" -> imageTime = R.drawable.icon_villar_real
+        "Alavés", "ALV" -> imageTime = R.drawable.icon_alaves
+        "Cádiz", "CAD" -> imageTime = R.drawable.icon_cadiz
+        "Mallorca", "MLC" -> imageTime = R.drawable.icon_mallorca
+        "Celta", "CVI", -> imageTime = R.drawable.icon_celta
+        "Granada", "GRA" -> imageTime = R.drawable.icon_granada
+        "Almería", "ALM" -> imageTime = R.drawable.icon_almeria
+
+        else -> imageTime = R.drawable.icon_error
+
+    }
+    return imageTime
+}
+
