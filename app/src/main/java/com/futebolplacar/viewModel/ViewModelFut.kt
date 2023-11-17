@@ -54,13 +54,11 @@ class ViewModelFut: ViewModel() {
             "classificacaoGeralCompose" -> {
                 Armazem.selectCampeonato = false
 
-
             }
 
         }
 
     }
-
 
     fun setCampeonatoAtual(campeonato: String){
         _campeonato.value = campeonato

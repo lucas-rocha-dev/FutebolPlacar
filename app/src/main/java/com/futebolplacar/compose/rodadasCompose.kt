@@ -64,16 +64,16 @@ fun rodadasFilter(rodadas: List<RodadasA>, rodadaAtual: Int, viewModel: ViewMode
         item { rodadaBar(rodadaAtual, viewModel) }
 
         itemsIndexed(rodadaView){  index, item ->
-            rodadasView(item)
+            rodadasView(item, viewModel)
 
     }
  }
 }
 @Composable
-fun rodadasView(jogos: Jogo){
+fun rodadasView(jogos: Jogo, viewModel: ViewModelFut){
 
-    val imgTimeA = verificIcon(jogos.Time_A)
-    val imgTimeB = verificIcon(jogos.Time_B)
+    val imgTimeA = verificIcon(jogos.Time_A, viewModel)
+    val imgTimeB = verificIcon(jogos.Time_B, viewModel)
     Column(verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier

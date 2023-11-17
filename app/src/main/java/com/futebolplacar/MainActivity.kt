@@ -50,8 +50,6 @@ class MainActivity : ComponentActivity() {
 
                 val viewModel by viewModels<ViewModelFut>()
 
-
-
                 val navController = rememberNavController()
 
                 val context = LocalContext.current

@@ -38,15 +38,15 @@ fun artilhariaCompose(viewModel: ViewModelFut){
             .fillMaxWidth()) {
 
         itemsIndexed(artilharia){ index, item ->
-            artilhariaView(item)
+            artilhariaView(item, viewModel)
         }
     }
 
 }
 
 @Composable
-fun artilhariaView(jogador: Posicao){
-    val img_time = verificIcon(jogador.time)
+fun artilhariaView(jogador: Posicao, viewModel: ViewModelFut){
+    val img_time = verificIcon(jogador.time, viewModel)
     var n_posicao = jogador.rank
     if(n_posicao.toInt() > 5){
         n_posicao = "  "
