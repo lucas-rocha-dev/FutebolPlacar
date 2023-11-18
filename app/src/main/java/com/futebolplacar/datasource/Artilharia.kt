@@ -1,7 +1,6 @@
 package com.futebolplacar.datasource
 
-import kotlinx.serialization.Serializable
-import java.util.stream.IntStream.range
+
 
 
 data class Artilharia(

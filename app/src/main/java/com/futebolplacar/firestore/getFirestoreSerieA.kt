@@ -23,17 +23,17 @@ suspend fun getClassificacaoGeral(docRef: CollectionReference, viewModel: ViewMo
 
         for (document in documents) {
             val id = document.id
-            val P = document.getString("P") ?: ""
-            val J = document.getString("J") ?: ""
-            val V = document.getString("V") ?: ""
-            val E = document.getString("E") ?: ""
-            val D = document.getString("D") ?: ""
-            val GP = document.getString("GP") ?: ""
-            val GC = document.getString("GC") ?: ""
-            val SG = document.getString("SG") ?: ""
+            val p = document.getString("P") ?: ""
+            val j = document.getString("J") ?: ""
+            val v = document.getString("V") ?: ""
+            val e = document.getString("E") ?: ""
+            val d = document.getString("D") ?: ""
+            val gp = document.getString("GP") ?: ""
+            val gc = document.getString("GC") ?: ""
+            val sg = document.getString("SG") ?: ""
             val porcentagem = document.getString("%") ?: ""
 
-            val classificacaoGeral = ClassificacaoGeralA(id, P, J, V, E, D, GP, GC, SG, porcentagem)
+            val classificacaoGeral = ClassificacaoGeralA(id, p, j, v, e, d, gp, gc, sg, porcentagem)
             classificacaoGeralList.add(classificacaoGeral)
         }
 
@@ -67,18 +67,18 @@ suspend fun getRodadas(docRef: CollectionReference, viewModel: ViewModelFut){
         for (jogos in partidas){
 
             val jogosObjeto = Jogo(
-                n_jogo = jogos.id,
-                data_local = jogos.getString("data_local").toString(),
-                Time_A = jogos.getString("Time_A").toString(),
-                Gols_A = jogos.getString("Gols_A").toString(),
-                Time_B =  jogos.getString("Time_B").toString(),
-                Gols_B = jogos.getString("Gols_B").toString()
+                nJogo = jogos.id,
+                dataLocal = jogos.getString("data_local").toString(),
+                timeA = jogos.getString("Time_A").toString(),
+                golsA = jogos.getString("Gols_A").toString(),
+                timeB =  jogos.getString("Time_B").toString(),
+                golsB = jogos.getString("Gols_B").toString()
             )
             listaJogo.add(jogosObjeto)
 
         }
-       val rodadas = RodadasA(rodadaId, listaJogo)
-       rodadasObjeto.add(rodadas)
+       val rodadasGet = RodadasA(rodadaId, listaJogo)
+       rodadasObjeto.add(rodadasGet)
 
     }
 
@@ -112,31 +112,28 @@ suspend fun getArtilharia(docRef: CollectionReference, viewModel: ViewModelFut){
 
 suspend fun getRodadaAtual(docRef: CollectionReference, viewModel: ViewModelFut) {
     val rodadaAtual: List<DocumentSnapshot> = docRef.get().await().documents
-    var n_rodada = ""
+    var nRodada = ""
     for (rodada in rodadaAtual) {
         val getRodada = rodada.getString("rodada_atual").toString()
-        n_rodada = getRodada
+        nRodada = getRodada
     }
 
-    //Armazem.n_rodada = n_rodada.toInt() - 1
-    viewModel.setNrodada(n_rodada.toInt() - 1)
+    viewModel.setNrodada(nRodada.toInt() - 1)
 
-    Log.d("getFirestore", "getRodadaAtual executado com sucesso: ${n_rodada}")
 }
 
 fun organizeRank(classificacaoGeralList: MutableList<ClassificacaoGeralA>,
                  viwModel: ViewModelFut): MutableList<ClassificacaoGeralA>{
     var newList = classificacaoGeralList
-    val campeonato = viwModel.campeonato.value
 
-    when(campeonato){
+    when(val campeonato = viwModel.campeonato.value){
         "Brasileiro A" -> {
             newList = newList
                 .asSequence()
-                .sortedByDescending { it.GP.toInt() }
-                .sortedByDescending { it.SG.toInt() }
-                .sortedByDescending { it.V.toInt() }
-                .sortedByDescending { it.P.toInt() }
+                .sortedByDescending { it.gp.toInt() }
+                .sortedByDescending { it.sg.toInt() }
+                .sortedByDescending { it.v.toInt() }
+                .sortedByDescending { it.p.toInt() }
                 .toMutableList()
 
             Log.i("campeonato", "Verific 1${campeonato}")
@@ -146,10 +143,10 @@ fun organizeRank(classificacaoGeralList: MutableList<ClassificacaoGeralA>,
         "Brasileiro B" -> {
             newList = newList
                 .asSequence()
-                .sortedByDescending { it.GP.toInt() }
-                .sortedByDescending { it.SG.toInt() }
-                .sortedByDescending { it.V.toInt() }
-                .sortedByDescending { it.P.toInt() }
+                .sortedByDescending { it.gp.toInt() }
+                .sortedByDescending { it.sg.toInt() }
+                .sortedByDescending { it.v.toInt() }
+                .sortedByDescending { it.p.toInt() }
                 .toMutableList()
             Log.i("campeonato", "Verific 2${campeonato}")
 
@@ -157,20 +154,20 @@ fun organizeRank(classificacaoGeralList: MutableList<ClassificacaoGeralA>,
         "La Liga" -> {
             newList = newList
                 .asSequence()
-                .sortedByDescending { it.V.toInt() }
-                .sortedByDescending { it.GP.toInt() }
-                .sortedByDescending { it.SG.toInt() }
-                .sortedByDescending { it.P.toInt() }
+                .sortedByDescending { it.v.toInt() }
+                .sortedByDescending { it.gp.toInt() }
+                .sortedByDescending { it.sg.toInt() }
+                .sortedByDescending { it.p.toInt() }
                 .toMutableList()
             Log.i("campeonato", "Verific 3${campeonato}")
         }
         "Premier" ->    {
             newList = newList
                 .asSequence()
-                .sortedByDescending { it.V.toInt() }
-                .sortedByDescending { it.GP.toInt() }
-                .sortedByDescending { it.SG.toInt() }
-                .sortedByDescending { it.P.toInt() }
+                .sortedByDescending { it.v.toInt() }
+                .sortedByDescending { it.gp.toInt() }
+                .sortedByDescending { it.sg.toInt() }
+                .sortedByDescending { it.p.toInt() }
                 .toMutableList()
             Log.i("campeonato", "Verific 4${campeonato}")
         }

@@ -1,7 +1,5 @@
 package com.futebolplacar.compose
 
-import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -28,20 +26,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.futebolplacar.datasource.ClassificacaoGeralA
-import com.futebolplacar.firestore.organizeRank
-import com.futebolplacar.funCompose.iconLaLiga
-import com.futebolplacar.funCompose.iconPremier
-import com.futebolplacar.funCompose.iconSerieA
-import com.futebolplacar.funCompose.iconSerieB
 import com.futebolplacar.funCompose.verificTime
 import com.futebolplacar.viewModel.ViewModelFut
 
 
-@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun classificacaoGeralCompose(viewModel: ViewModelFut){
-    viewModel.setConfigView("classificacaoGeralCompose")
+fun ClassificacaoGeralCompose(viewModel: ViewModelFut){
 
+    viewModel.setConfigView("classificacaoGeralCompose")
 
     val listClassificacaoGeral  by viewModel.classificacaoGeral.collectAsState()
 
@@ -55,7 +47,6 @@ fun classificacaoGeralCompose(viewModel: ViewModelFut){
 
 
 
-
     LazyColumn(modifier = Modifier
         .padding(start = 2.dp)
         .fillMaxSize()
@@ -64,7 +55,7 @@ fun classificacaoGeralCompose(viewModel: ViewModelFut){
             Box(modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 10.dp))
-            topPontuacao()
+            TopPontuacao()
         }
 
         itemsIndexed(listClassificacaoGeral) { index, time ->
@@ -75,27 +66,25 @@ fun classificacaoGeralCompose(viewModel: ViewModelFut){
  }
 
 
-
-
 }
 @Composable
 fun ClassificacaoGeralItem(classificacao: ClassificacaoGeralA, index: Int, viewModel: ViewModelFut) {
- val (icone_time, nameAbrev) = verificTime(classificacao.name_time, viewModel)
- var posicao_time = index +1
- var color_colocacao = Color.White
- if(posicao_time < 5){
-     color_colocacao = Color.Green
+ val (iconeTime, nameAbrev) = verificTime(classificacao.nameTime, viewModel)
+ val posicaoTime = index +1
+ var colorColocacao = Color.White
+ if(posicaoTime < 5){
+     colorColocacao = Color.Green
  }
- if(posicao_time > 16){
-     color_colocacao = Color.Red
+ if(posicaoTime > 16){
+     colorColocacao = Color.Red
  }
  Row(modifier = Modifier
      .fillMaxWidth()) {
 
-    Text(text = "$posicao_time" +"º", color = color_colocacao, fontSize = 10.sp)
+    Text(text = "$posicaoTime" +"º", color = colorColocacao, fontSize = 10.sp)
 
    Image(modifier = Modifier.size(30.dp, 30.dp),
-   painter = painterResource(id = icone_time as Int),
+   painter = painterResource(id = iconeTime as Int),
    contentDescription = "Bandeira Time" )
 
   Text(text = "$nameAbrev", color = Color.White,fontWeight = FontWeight.Bold)
@@ -106,37 +95,37 @@ fun ClassificacaoGeralItem(classificacao: ClassificacaoGeralA, index: Int, viewM
    horizontalArrangement = Arrangement.End, verticalAlignment = Alignment.CenterVertically) {
 
     Box(modifier = Modifier.width(30.dp)){
-        Text(text = "${classificacao.P}", color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
+        Text(text = classificacao.p, color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
     }
 
    Box(modifier = Modifier.width(30.dp)){
-    Text(text = "${classificacao.J}", color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
+    Text(text = classificacao.j, color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
    }
    Box(modifier = Modifier.width(30.dp)){
-    Text(text = "${classificacao.V}", color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
+    Text(text = classificacao.v, color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
    }
    Box(modifier = Modifier.width(30.dp)){
-    Text(text = "${classificacao.E}", color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
+    Text(text = classificacao.e, color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
 
    }
    Box(modifier = Modifier.width(30.dp)){
-    Text(text = "${classificacao.D}", color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
+    Text(text = classificacao.d, color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
 
    }
    Box(modifier = Modifier.width(30.dp)){
-    Text(text = "${classificacao.GP}", color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
+    Text(text = classificacao.gp, color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
 
    }
    Box(modifier = Modifier.width(30.dp)){
-    Text(text = "${classificacao.GC}", color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
+    Text(text = classificacao.gc, color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
 
    }
    Box(modifier = Modifier.width(30.dp)){
-    Text(text = "${classificacao.SG}", color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
+    Text(text = classificacao.sg, color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
 
    }
    Box(modifier = Modifier.width(30.dp)){
-    Text(text = "${classificacao.porcentagem}", color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
+    Text(text = classificacao.porcentagem, color = Color.White,fontWeight = FontWeight.Bold, fontSize = 12.sp)
 
    }
 
@@ -152,7 +141,7 @@ fun ClassificacaoGeralItem(classificacao: ClassificacaoGeralA, index: Int, viewM
 
 @Preview
 @Composable
-fun topPontuacao(){
+fun TopPontuacao(){
   Row(horizontalArrangement = Arrangement.End,
    modifier = Modifier
        .fillMaxWidth()

@@ -28,19 +28,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.futebolplacar.Armazem
 import com.futebolplacar.Armazem.lastClickTime
-import com.futebolplacar.R
 import com.futebolplacar.funCompose.verificLogoCampeonato
 import com.futebolplacar.viewModel.ViewModelFut
 
 
 @Composable
-fun topBar(viewModel: ViewModelFut){
+fun TopBar(viewModel: ViewModelFut, naveController: NavController){
 
     val nameWindow by viewModel.nameWindow.collectAsState()
-
-    val logoCampeonato = verificLogoCampeonato(viewModel, nameWindow)
+    val logoCampeonato = verificLogoCampeonato(nameWindow)
 
     Box(
         modifier = Modifier
@@ -54,12 +53,7 @@ fun topBar(viewModel: ViewModelFut){
 
         Icon(modifier = Modifier
             .clickable {
-                if (!Armazem.columView) {
-                    Armazem.columView = true
-                } else {
-                    Armazem.columView = false
-                }
-
+                Armazem.columView = !Armazem.columView
 
             }
             .padding(start = 10.dp)
@@ -69,33 +63,45 @@ fun topBar(viewModel: ViewModelFut){
             tint = Color.White,
             contentDescription = "menu superior")
 
-
         Text(text = nameWindow, color = Color.White, fontSize = 20.sp,
             modifier = Modifier.padding(start = 20.dp, end = 10.dp),
             textAlign = TextAlign.Center)
 
-
         Image(painterResource(id = logoCampeonato),
             contentDescription = "Logo Campeonato",
             modifier = Modifier.size(40.dp, 40.dp))
-
 
             Column(modifier = Modifier
             .padding(end = 5.dp)
             .fillMaxWidth(),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.End) {
+
+
+            if(!Armazem.selectCampeonato) {
+
+
+
             IconButton(
                 onClick = {
 
                 if (System.currentTimeMillis() - lastClickTime > 30000) {
+                    lastClickTime = System.currentTimeMillis()
 
+                    viewModel.classificacaoGeral.value.clear()
+                    viewModel.artilharia.value.artilheiros = mutableListOf()
+                    viewModel.jogosDaRodada.value.clear()
 
-                    Armazem.lastClickTime = System.currentTimeMillis()
+                    viewModel.setFirestore(viewModel, "classficicacaoGeral")
+                    naveController.navigate("classificacaoGeralCompose")
+
+                    Log.d("Click", "Click")
+
                 } else {
-                }
+                    Log.d("Click", "intervalo click")
                 }
 
+                }
             ) {
                 Icon(
                     modifier = Modifier.size(40.dp),
@@ -104,7 +110,11 @@ fun topBar(viewModel: ViewModelFut){
                     contentDescription = "Atualizar"
                 )
             }
-        }
+
+
+            }
+
+         }
 
         }
     }

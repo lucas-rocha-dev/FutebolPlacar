@@ -14,10 +14,6 @@ object Armazem {
     private var _selectCampeonato by mutableStateOf(true)
 
 
-
-
-
-
     var columView: Boolean
         get() = _columView
         set(value) {
@@ -35,8 +31,5 @@ object Armazem {
         set(value) {
             _selectCampeonato = value
         }
-
-
-
 
 }

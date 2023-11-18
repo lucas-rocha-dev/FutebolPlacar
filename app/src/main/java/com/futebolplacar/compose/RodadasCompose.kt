@@ -29,7 +29,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.futebolplacar.Armazem
 import com.futebolplacar.R
 import com.futebolplacar.datasource.Jogo
 import com.futebolplacar.datasource.RodadasA
@@ -38,14 +37,14 @@ import com.futebolplacar.viewModel.ViewModelFut
 
 
 @Composable
-fun rodadasCompose(viewModel: ViewModelFut){
+fun RodadasCompose(viewModel: ViewModelFut){
 
     val getRodadas by viewModel.jogosDaRodada.collectAsState()
-    val n_rodada by viewModel.nRodada.collectAsState()
+    val nRodada by viewModel.nRodada.collectAsState()
 
-   val classificacaoGeralA = getRodadas.sortedBy { it.n_rodada.toInt() }
+   val classificacaoGeralA = getRodadas.sortedBy { it.nRodada.toInt() }
     if(classificacaoGeralA.size > 2){
-        rodadasFilter(classificacaoGeralA, n_rodada, viewModel)
+        RodadasFilter(classificacaoGeralA, nRodada, viewModel)
     } else {
         Text(modifier = Modifier.padding(top = 40.dp, start = 60.dp),text = "Carregando...",
             fontSize = 30.sp, color = Color.White)
@@ -55,25 +54,25 @@ fun rodadasCompose(viewModel: ViewModelFut){
 }
 
 @Composable
-fun rodadasFilter(rodadas: List<RodadasA>, rodadaAtual: Int, viewModel: ViewModelFut){
-   val rodadaView = rodadas[rodadaAtual].jogos.sortedBy { it.n_jogo.toInt() }
+fun RodadasFilter(rodadas: List<RodadasA>, rodadaAtual: Int, viewModel: ViewModelFut){
+   val rodadaView = rodadas[rodadaAtual].jogos.sortedBy { it.nJogo.toInt() }
 
     LazyColumn(modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally) {
 
-        item { rodadaBar(rodadaAtual, viewModel) }
+        item { RodadaBar(rodadaAtual, viewModel) }
 
-        itemsIndexed(rodadaView){  index, item ->
-            rodadasView(item, viewModel)
+        itemsIndexed(rodadaView){  _, item ->
+            RodadasView(item, viewModel)
 
     }
  }
 }
 @Composable
-fun rodadasView(jogos: Jogo, viewModel: ViewModelFut){
+fun RodadasView(jogos: Jogo, viewModel: ViewModelFut){
 
-    val imgTimeA = verificIcon(jogos.Time_A, viewModel)
-    val imgTimeB = verificIcon(jogos.Time_B, viewModel)
+    val imgTimeA = verificIcon(jogos.timeA, viewModel)
+    val imgTimeB = verificIcon(jogos.timeB, viewModel)
     Column(verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -94,13 +93,13 @@ fun rodadasView(jogos: Jogo, viewModel: ViewModelFut){
 
     ){
 
-    Text(text = jogos.data_local,
+    Text(text = jogos.dataLocal,
         color = Color.White, fontSize = 10.sp,
         modifier = Modifier.
     padding(top = 5.dp, bottom = 5.dp))
 
     Row {
-        Text(text = jogos.Time_A, color = Color.White,
+        Text(text = jogos.timeA, color = Color.White,
             modifier = Modifier.
             padding(start = 3.dp, end = 3.dp))
 
@@ -108,13 +107,13 @@ fun rodadasView(jogos: Jogo, viewModel: ViewModelFut){
             painter = painterResource(id = imgTimeA),
             contentDescription = "Bandeira Time" )
 
-        Text(text = jogos.Gols_A, color = Color.White,
+        Text(text = jogos.golsA, color = Color.White,
             modifier = Modifier.
         padding(start = 3.dp, end = 3.dp))
 
         Text(text = "X", color = Color.White)
 
-        Text(text = jogos.Gols_B, color = Color.White,
+        Text(text = jogos.golsB, color = Color.White,
             modifier = Modifier.
             padding(start = 3.dp, end = 3.dp))
 
@@ -122,7 +121,7 @@ fun rodadasView(jogos: Jogo, viewModel: ViewModelFut){
             painter = painterResource(id = imgTimeB),
             contentDescription = "Bandeira Time" )
 
-        Text(text = jogos.Time_B, color = Color.White,
+        Text(text = jogos.timeB, color = Color.White,
             modifier = Modifier.
             padding(start = 3.dp, end = 3.dp))
 
@@ -134,7 +133,7 @@ fun rodadasView(jogos: Jogo, viewModel: ViewModelFut){
 
 
 @Composable
-fun rodadaBar(rodadaAtual: Int, viewModel: ViewModelFut){
+fun RodadaBar(rodadaAtual: Int, viewModel: ViewModelFut){
     val numeroRodada = rodadaAtual + 1
     Row(verticalAlignment = Alignment.Top,
             horizontalArrangement = Arrangement.Center,

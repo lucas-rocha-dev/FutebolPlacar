@@ -1,6 +1,5 @@
 package com.futebolplacar
 
-import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -29,13 +28,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.futebolplacar.adMob.AdMob
 import com.futebolplacar.compose.PoliticPrivac
-import com.futebolplacar.compose.artilhariaCompose
-import com.futebolplacar.compose.classificacaoGeralCompose
+import com.futebolplacar.compose.ArtilhariaCompose
+import com.futebolplacar.compose.ClassificacaoGeralCompose
 import com.futebolplacar.compose.columnavegationCompose
-import com.futebolplacar.compose.navegationBar
-import com.futebolplacar.compose.rodadasCompose
-import com.futebolplacar.compose.selectCampeonato
-import com.futebolplacar.compose.topBar
+import com.futebolplacar.compose.NavegationBar
+import com.futebolplacar.compose.RodadasCompose
+import com.futebolplacar.compose.SelectCampeonato
+import com.futebolplacar.compose.TopBar
 import com.futebolplacar.ui.theme.FutebolPlacarTheme
 import com.futebolplacar.viewModel.ViewModelFut
 
@@ -76,8 +75,7 @@ class MainActivity : ComponentActivity() {
 
                         Column {
 
-
-                                topBar(viewModel)
+                                TopBar(viewModel, navController)
 
 
                             Box(modifier = Modifier.fillMaxSize() ){
@@ -92,10 +90,10 @@ class MainActivity : ComponentActivity() {
                                         bottom = 130.dp
                                     )) {
                                     if(!Armazem.selectCampeonato) {
-                                        navegationBar(navController, viewModel)
+                                        NavegationBar(navController, viewModel)
                                     }
 
-                                    MyAppNavHost(navController, context, viewModel)
+                                    MyAppNavHost(navController, viewModel)
                                 }
                                 if (Armazem.columView){
                                     Box(modifier = Modifier.padding(start = 20.dp)){
@@ -128,7 +126,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyAppNavHost(
     navController: NavHostController,
-    context: Context,
     viewModel: ViewModelFut,
     startDestination: String = "selectCampeonato"
 ) {
@@ -137,16 +134,16 @@ fun MyAppNavHost(
         startDestination = startDestination
     ) {
         composable("classificacaoGeralCompose") {
-            classificacaoGeralCompose(viewModel)
+            ClassificacaoGeralCompose(viewModel)
         }
 
-        composable("rodadasCompose") { rodadasCompose(viewModel) }
+        composable("rodadasCompose") { RodadasCompose(viewModel) }
 
-        composable("artilhariaCompose") {artilhariaCompose(viewModel)}
+        composable("artilhariaCompose") {ArtilhariaCompose(viewModel)}
 
         composable("PoliticPrivac") {PoliticPrivac(viewModel)}
 
-        composable("selectCampeonato") {selectCampeonato(viewModel, navController)}
+        composable("selectCampeonato") {SelectCampeonato(viewModel, navController)}
 
     }
 }

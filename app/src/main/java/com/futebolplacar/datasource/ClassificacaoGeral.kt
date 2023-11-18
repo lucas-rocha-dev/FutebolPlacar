@@ -3,14 +3,14 @@ package com.futebolplacar.datasource
 
 
 data class ClassificacaoGeralA(
-    val name_time: String,
-    val P: String,
-    val J: String,
-    val V: String,
-    val E: String,
-    val D: String,
-    val GP: String,
-    val GC: String,
-    val SG: String,
+    val nameTime: String,
+    val p: String,
+    val j: String,
+    val v: String,
+    val e: String,
+    val d: String,
+    val gp: String,
+    val gc: String,
+    val sg: String,
     val porcentagem: String
 )

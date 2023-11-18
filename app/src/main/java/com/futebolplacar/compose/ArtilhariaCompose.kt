@@ -19,7 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.futebolplacar.Armazem
 import androidx.compose.ui.unit.sp
 import com.futebolplacar.datasource.Posicao
 import com.futebolplacar.funCompose.verificIcon
@@ -27,7 +26,7 @@ import com.futebolplacar.viewModel.ViewModelFut
 
 
 @Composable
-fun artilhariaCompose(viewModel: ViewModelFut){
+fun ArtilhariaCompose(viewModel: ViewModelFut){
 
     val artilhariaGet by viewModel.artilharia.collectAsState()
     val artilharia = artilhariaGet.artilheiros.sortedBy { it.rank.toInt() }
@@ -37,30 +36,30 @@ fun artilhariaCompose(viewModel: ViewModelFut){
             .padding(top = 15.dp)
             .fillMaxWidth()) {
 
-        itemsIndexed(artilharia){ index, item ->
-            artilhariaView(item, viewModel)
+        itemsIndexed(artilharia){ _, item ->
+            ArtilhariaView(item, viewModel)
         }
     }
 
 }
 
 @Composable
-fun artilhariaView(jogador: Posicao, viewModel: ViewModelFut){
-    val img_time = verificIcon(jogador.time, viewModel)
-    var n_posicao = jogador.rank
-    if(n_posicao.toInt() > 5){
-        n_posicao = "  "
+fun ArtilhariaView(jogador: Posicao, viewModel: ViewModelFut){
+    val imgTime = verificIcon(jogador.time, viewModel)
+    var nPosicao = jogador.rank
+    if(nPosicao.toInt() > 5){
+        nPosicao = "  "
     }
 
     Row(modifier = Modifier
         .fillMaxWidth()) {
-        Text(text = n_posicao, fontSize = 20.sp,
+        Text(text = nPosicao, fontSize = 20.sp,
             color = Color.White,
             modifier = Modifier
 
                 .padding(start = 2.dp))
 
-        Image(painterResource(id = img_time),
+        Image(painterResource(id = imgTime),
             contentDescription = "Imagem Time",
             modifier = Modifier
                 .padding(start = 10.dp)

@@ -1,422 +1,423 @@
 package com.futebolplacar.funCompose
 
-import android.util.Log
 import com.futebolplacar.R
 import com.futebolplacar.viewModel.ViewModelFut
 
 fun verificTime(name: String, viewModel: ViewModelFut): List<Any>{
-    var image_time = 0
-    var name_abrev = "A"
+    val imageTime: Int
+    val nameAbrev: String
     val campeonato = viewModel.campeonato.value
-    Log.d("campeonato", campeonato.toString())
     when(campeonato) {
         "Brasileiro A" -> {
                 val infoTime = verificTimeSerieA(name)
-                image_time = infoTime[0] as Int
-                name_abrev = infoTime[1] as String
+                imageTime = infoTime[0] as Int
+                nameAbrev = infoTime[1] as String
             }
         "Brasileiro B" -> {
             val infoTime = verificTimeSerieB(name)
-            image_time = infoTime[0] as Int
-            name_abrev = infoTime[1] as String
+            imageTime = infoTime[0] as Int
+            nameAbrev = infoTime[1] as String
         }
         "La Liga" -> {
             val infoTime = verificTimeLaLiga(name)
-            image_time = infoTime[0] as Int
-            name_abrev = infoTime[1] as String
+            imageTime = infoTime[0] as Int
+            nameAbrev = infoTime[1] as String
         }
         "Premier" -> {
             val infoTime = verificTimePremier(name)
-            image_time = infoTime[0] as Int
-            name_abrev = infoTime[1] as String
+            imageTime = infoTime[0] as Int
+            nameAbrev = infoTime[1] as String
         }
         else -> {
-            image_time = R.drawable.icon_error
-            name_abrev = "Algo deu errado, desculpe!"
+            imageTime = R.drawable.icon_error
+            nameAbrev = "Algo deu errado, desculpe!"
         }
 
     }
 
-    return listOf(image_time, name_abrev)
+    return listOf(imageTime, nameAbrev)
 
 }
 
 
 fun verificTimeSerieA(name: String): List<Any>{
-    var image_time = 0
-    var name_abrev = "A"
+    val imageTime: Int
+    val nameAbrev: String
 
     when (name){
         "Botafogo" -> {
-            image_time = R.drawable.icon_botafogo
-            name_abrev = "BOT"
+            imageTime = R.drawable.icon_botafogo
+            nameAbrev = "BOT"
         }
         "Palmeiras" -> {
-            image_time = R.drawable.icon_palmeiras
-            name_abrev = "PAL"
+            imageTime = R.drawable.icon_palmeiras
+            nameAbrev = "PAL"
         }
         "Grêmio" -> {
-            image_time = R.drawable.icon_gremio
-            name_abrev = "GRE"
+            imageTime = R.drawable.icon_gremio
+            nameAbrev = "GRE"
         }
         "Bragantino" -> {
-            image_time = R.drawable.icon_bragantino
-            name_abrev = "RBB"
+            imageTime = R.drawable.icon_bragantino
+            nameAbrev = "RBB"
         }
         "Fluminense" -> {
-            image_time = R.drawable.icon_fluminense
-            name_abrev ="FLU"
+            imageTime = R.drawable.icon_fluminense
+            nameAbrev ="FLU"
         }
         "Athletico-PR" -> {
-            image_time = R.drawable.icon_athletico_pr
-            name_abrev = "CAP"
+            imageTime = R.drawable.icon_athletico_pr
+            nameAbrev = "CAP"
         }
         "Flamengo" -> {
-            image_time = R.drawable.icon_flamengo
-            name_abrev = "FLA"
+            imageTime = R.drawable.icon_flamengo
+            nameAbrev = "FLA"
         }
         "Fortaleza" -> {
-            image_time = R.drawable.icon_fortaleza
-            name_abrev = "FOR"
+            imageTime = R.drawable.icon_fortaleza
+            nameAbrev = "FOR"
         }
         "Atlético-MG" -> {
-            image_time = R.drawable.icon_atletico_mg
-            name_abrev = "CAM"
+            imageTime = R.drawable.icon_atletico_mg
+            nameAbrev = "CAM"
 
         }
         "São Paulo" -> {
-            image_time = R.drawable.icon_sao_paulo
-            name_abrev = "SAO"
+            imageTime = R.drawable.icon_sao_paulo
+            nameAbrev = "SAO"
 
         }
         "Corinthians" -> {
-            image_time = R.drawable.icon_corinthians
-            name_abrev = "COR"
+            imageTime = R.drawable.icon_corinthians
+            nameAbrev = "COR"
         }
         "Cuiabá" -> {
-            image_time = R.drawable.icon_cuiaba
-            name_abrev = "CUI"
+            imageTime = R.drawable.icon_cuiaba
+            nameAbrev = "CUI"
         }
         "Cruzeiro" -> {
-            image_time = R.drawable.icon_cruzeiro
-            name_abrev = "CRU"
+            imageTime = R.drawable.icon_cruzeiro
+            nameAbrev = "CRU"
         }
         "Internacional" -> {
-            image_time = R.drawable.icon_internacional
-            name_abrev = "INT"
+            imageTime = R.drawable.icon_internacional
+            nameAbrev = "INT"
         }
         "Vasco" -> {
-            image_time = R.drawable.icon_vasco_da_gama
-            name_abrev = "VAS"
+            imageTime = R.drawable.icon_vasco_da_gama
+            nameAbrev = "VAS"
         }
         "Goiás" -> {
-            image_time = R.drawable.icon_goias
-            name_abrev = "GOI"
+            imageTime = R.drawable.icon_goias
+            nameAbrev = "GOI"
         }
         "Bahia" -> {
-            image_time = R.drawable.icon_bahia
-            name_abrev = "BAH"
+            imageTime = R.drawable.icon_bahia
+            nameAbrev = "BAH"
         }
         "Santos" -> {
-            image_time = R.drawable.icon_santos
-            name_abrev = "SAN"
+            imageTime = R.drawable.icon_santos
+            nameAbrev = "SAN"
         }
         "América-MG" -> {
-            image_time = R.drawable.icon_america_mg
-            name_abrev = "AME"
+            imageTime = R.drawable.icon_america_mg
+            nameAbrev = "AME"
         }
         "Coritiba" -> {
-            image_time = R.drawable.icon_coritiba
-            name_abrev = "CFC"
+            imageTime = R.drawable.icon_coritiba
+            nameAbrev = "CFC"
         }
 
-        else -> image_time = R.drawable.icon_error
+        else -> {
+            imageTime = R.drawable.icon_error
+            nameAbrev = "Algo deu errado, desculpe!"
+        }
     }
 
-    return listOf(image_time, name_abrev)
+    return listOf(imageTime, nameAbrev)
 
 }
 fun verificTimeSerieB(name: String): List<Any>{
-    var image_time = 0
-    var name_abrev = "A"
+    val imageTime: Int
+    val nameAbrev: String
 
     when (name){
         "Vitória" -> {
-            image_time = R.drawable.icon_vitoria
-            name_abrev = "VIT"
+            imageTime = R.drawable.icon_vitoria
+            nameAbrev = "VIT"
         }
         "Criciúma" -> {
-            image_time = R.drawable.icon_criciuma
-            name_abrev = "CRI"
+            imageTime = R.drawable.icon_criciuma
+            nameAbrev = "CRI"
         }
         "Juventude" -> {
-            image_time = R.drawable.icon_juventude
-            name_abrev = "JUV"
+            imageTime = R.drawable.icon_juventude
+            nameAbrev = "JUV"
         }
         "Atlético-GO" -> {
-            image_time = R.drawable.icon_atleticogo
-            name_abrev = "ACG"
+            imageTime = R.drawable.icon_atleticogo
+            nameAbrev = "ACG"
         }
         "Sport" -> {
-            image_time = R.drawable.icon_sport_recife
-            name_abrev = "SPT"
+            imageTime = R.drawable.icon_sport_recife
+            nameAbrev = "SPT"
         }
         "Vila Nova" -> {
-            image_time = R.drawable.icon_vila_nova
-            name_abrev = "VNO"
+            imageTime = R.drawable.icon_vila_nova
+            nameAbrev = "VNO"
         }
         "Novorizontino" -> {
-            image_time = R.drawable.icon_novorizontino
-            name_abrev = "NOV"
+            imageTime = R.drawable.icon_novorizontino
+            nameAbrev = "NOV"
         }
         "Mirassol" -> {
-            image_time = R.drawable.icon_mirassol
-            name_abrev = "MIR"
+            imageTime = R.drawable.icon_mirassol
+            nameAbrev = "MIR"
         }
         "Guarani" -> {
-            image_time = R.drawable.icon_guarani
-            name_abrev = "GUA"
+            imageTime = R.drawable.icon_guarani
+            nameAbrev = "GUA"
         }
         "CRB" -> {
-            image_time = R.drawable.icon_crb
-            name_abrev = "CRB"
+            imageTime = R.drawable.icon_crb
+            nameAbrev = "CRB"
         }
         "Ceará" -> {
-            image_time = R.drawable.icon_ceara
-            name_abrev = "CEA"
+            imageTime = R.drawable.icon_ceara
+            nameAbrev = "CEA"
         }
         "Botafogo-SP" -> {
-            image_time = R.drawable.icon_botafogo_sp
-            name_abrev = "BSP"
+            imageTime = R.drawable.icon_botafogo_sp
+            nameAbrev = "BSP"
         }
         "Avaí" -> {
-            image_time = R.drawable.icon_avai
-            name_abrev = "AVA"
+            imageTime = R.drawable.icon_avai
+            nameAbrev = "AVA"
         }
         "Ituano" -> {
-            image_time = R.drawable.icon_ituano
-            name_abrev = "ITU"
+            imageTime = R.drawable.icon_ituano
+            nameAbrev = "ITU"
         }
         "Ponte Preta" -> {
-            image_time = R.drawable.icon_ponte_preta
-            name_abrev = "PON"
+            imageTime = R.drawable.icon_ponte_preta
+            nameAbrev = "PON"
         }
         "Tombense" -> {
-            image_time = R.drawable.icon_tombense
-            name_abrev = "TOM"
+            imageTime = R.drawable.icon_tombense
+            nameAbrev = "TOM"
         }
         "Chapecoense" -> {
-            image_time = R.drawable.icon_chapecoense
-            name_abrev = "CHA"
+            imageTime = R.drawable.icon_chapecoense
+            nameAbrev = "CHA"
         }
         "Sampaio Corrêa" -> {
-            image_time = R.drawable.icon_sampaio_correa
-            name_abrev = "SCO"
+            imageTime = R.drawable.icon_sampaio_correa
+            nameAbrev = "SCO"
         }
         "Londrina" -> {
-            image_time = R.drawable.icon_londrina
-            name_abrev = "LEC"
+            imageTime = R.drawable.icon_londrina
+            nameAbrev = "LEC"
         }
         "ABC" -> {
-            image_time = R.drawable.icon_abc
-            name_abrev = "ABC"
+            imageTime = R.drawable.icon_abc
+            nameAbrev = "ABC"
         }
 
         else -> {
-            image_time = R.drawable.icon_error
-            name_abrev = "ERR"
+            imageTime = R.drawable.icon_error
+            nameAbrev = "ERR"
         }
     }
 
-    return listOf(image_time, name_abrev)
+    return listOf(imageTime, nameAbrev)
 }
 
 fun verificTimeLaLiga(name: String): List<Any>{
-    var image_time = 0
-    var name_abrev = "A"
+    val imageTime: Int
+    val nameAbrev: String
 
     when (name){
         "Girona" -> {
-            image_time = R.drawable.icon_girona
-            name_abrev = "GIR"
+            imageTime = R.drawable.icon_girona
+            nameAbrev = "GIR"
         }
         "Real Madrid" -> {
-            image_time = R.drawable.icon_real_madrid
-            name_abrev = "MAD"
+            imageTime = R.drawable.icon_real_madrid
+            nameAbrev = "MAD"
         }
         "Barcelona" -> {
-            image_time = R.drawable.icon_barcelona
-            name_abrev = "BAR"
+            imageTime = R.drawable.icon_barcelona
+            nameAbrev = "BAR"
         }
         "Atlético de Madrid", "Atlético"  -> {
-            image_time = R.drawable.icon_atletico_madrid
-            name_abrev = "ATL"
+            imageTime = R.drawable.icon_atletico_madrid
+            nameAbrev = "ATL"
         }
         "Athletic Bilbao", "Athletic"-> {
-            image_time = R.drawable.icon_athletic_bilbao
-            name_abrev = "ATH"
+            imageTime = R.drawable.icon_athletic_bilbao
+            nameAbrev = "ATH"
         }
         "Real Sociedad" -> {
-            image_time = R.drawable.icon_real_sociedad
-            name_abrev = "RSO"
+            imageTime = R.drawable.icon_real_sociedad
+            nameAbrev = "RSO"
         }
         "Betis", "Real Betis" -> {
-            image_time = R.drawable.icon_betis
-            name_abrev = "BET"
+            imageTime = R.drawable.icon_betis
+            nameAbrev = "BET"
         }
         "Las Palmas" -> {
-            image_time = R.drawable.icon_la_palmas
-            name_abrev = "LPA"
+            imageTime = R.drawable.icon_la_palmas
+            nameAbrev = "LPA"
         }
         "Valencia" -> {
-            image_time = R.drawable.icon_valencia
-            name_abrev = "VAL"
+            imageTime = R.drawable.icon_valencia
+            nameAbrev = "VAL"
         }
         "Rayo Vallecano" -> {
-            image_time = R.drawable.icon_rayo_vallecano
-            name_abrev = "RVL"
+            imageTime = R.drawable.icon_rayo_vallecano
+            nameAbrev = "RVL"
         }
         "Getafe" -> {
-            image_time = R.drawable.icon_getafe
-            name_abrev = "GET"
+            imageTime = R.drawable.icon_getafe
+            nameAbrev = "GET"
         }
         "Osasuna" -> {
-            image_time = R.drawable.icon_osasuna
-            name_abrev = "OSA"
+            imageTime = R.drawable.icon_osasuna
+            nameAbrev = "OSA"
         }
         "Sevilla" -> {
-            image_time = R.drawable.icon_sevilla
-            name_abrev = "SEV"
+            imageTime = R.drawable.icon_sevilla
+            nameAbrev = "SEV"
         }
         "Villarreal" -> {
-            image_time = R.drawable.icon_villar_real
-            name_abrev = "VIL"
+            imageTime = R.drawable.icon_villar_real
+            nameAbrev = "VIL"
         }
         "Alavés" -> {
-            image_time = R.drawable.icon_alaves
-            name_abrev = "ALV"
+            imageTime = R.drawable.icon_alaves
+            nameAbrev = "ALV"
         }
         "Cádiz" -> {
-            image_time = R.drawable.icon_cadiz
-            name_abrev = "CAD"
+            imageTime = R.drawable.icon_cadiz
+            nameAbrev = "CAD"
         }
         "Mallorca" -> {
-            image_time = R.drawable.icon_mallorca
-            name_abrev = "MLC"
+            imageTime = R.drawable.icon_mallorca
+            nameAbrev = "MLC"
         }
         "Celta" -> {
-            image_time = R.drawable.icon_celta
-            name_abrev = "CVI"
+            imageTime = R.drawable.icon_celta
+            nameAbrev = "CVI"
         }
         "Granada" -> {
-            image_time = R.drawable.icon_granada
-            name_abrev = "GRA"
+            imageTime = R.drawable.icon_granada
+            nameAbrev = "GRA"
         }
         "Almería" -> {
-            image_time = R.drawable.icon_almeria
-            name_abrev = "ALM"
+            imageTime = R.drawable.icon_almeria
+            nameAbrev = "ALM"
         }
 
         else -> {
-            image_time = R.drawable.icon_error
-            name_abrev = "ERR"
+            imageTime = R.drawable.icon_error
+            nameAbrev = "ERR"
         }
     }
 
-    return listOf(image_time, name_abrev)
+    return listOf(imageTime, nameAbrev)
 }
 
 fun verificTimePremier(name: String): List<Any>{
-    var image_time = 0
-    var name_abrev = "A"
+    val imageTime: Int
+    val nameAbrev: String
 
     when (name){
         "Manchester City" -> {
-            image_time = R.drawable.icon_manchester_city
-            name_abrev = "MAC"
+            imageTime = R.drawable.icon_manchester_city
+            nameAbrev = "MAC"
         }
         "Liverpool" -> {
-            image_time = R.drawable.icon_liverpool
-            name_abrev = "LIV"
+            imageTime = R.drawable.icon_liverpool
+            nameAbrev = "LIV"
         }
         "Arsenal" -> {
-            image_time = R.drawable.icon_arsenal
-            name_abrev = "ARS"
+            imageTime = R.drawable.icon_arsenal
+            nameAbrev = "ARS"
         }
         "Tottenham" -> {
-            image_time = R.drawable.icon_tottenham
-            name_abrev = "TOT"
+            imageTime = R.drawable.icon_tottenham
+            nameAbrev = "TOT"
         }
         "Aston Villa" -> {
-            image_time = R.drawable.icon_aston_villa
-            name_abrev = "ASV"
+            imageTime = R.drawable.icon_aston_villa
+            nameAbrev = "ASV"
         }
         "Manchester United" -> {
-            image_time = R.drawable.icon_manchester_united
-            name_abrev = "MAN"
+            imageTime = R.drawable.icon_manchester_united
+            nameAbrev = "MAN"
         }
         "Newcastle" -> {
-            image_time = R.drawable.icon_newcastle
-            name_abrev = "NEW"
+            imageTime = R.drawable.icon_newcastle
+            nameAbrev = "NEW"
         }
         "Brighton" -> {
-            image_time = R.drawable.icon_brighton
-            name_abrev = "BFC"
+            imageTime = R.drawable.icon_brighton
+            nameAbrev = "BFC"
         }
         "West Ham" -> {
-            image_time = R.drawable.icon_west_ham
-            name_abrev = "WTH"
+            imageTime = R.drawable.icon_west_ham
+            nameAbrev = "WTH"
         }
         "Chelsea" -> {
-            image_time = R.drawable.icon_chelsea
-            name_abrev = "CHE"
+            imageTime = R.drawable.icon_chelsea
+            nameAbrev = "CHE"
         }
         "Brentford" -> {
-            image_time = R.drawable.icon_brentford
-            name_abrev = "BRE"
+            imageTime = R.drawable.icon_brentford
+            nameAbrev = "BRE"
         }
         "Wolverhampton" -> {
-            image_time = R.drawable.icon_wolverhampton
-            name_abrev = "WOL"
+            imageTime = R.drawable.icon_wolverhampton
+            nameAbrev = "WOL"
         }
         "Crystal Palace" -> {
-            image_time = R.drawable.icon_crystal_palace
-            name_abrev = "CPA"
+            imageTime = R.drawable.icon_crystal_palace
+            nameAbrev = "CPA"
         }
         "Nottingham Forest" -> {
-            image_time = R.drawable.icon_nottingham_forest
-            name_abrev = "NOT"
+            imageTime = R.drawable.icon_nottingham_forest
+            nameAbrev = "NOT"
         }
         "Fulham" -> {
-            image_time = R.drawable.icon_fulham
-            name_abrev = "FUL"
+            imageTime = R.drawable.icon_fulham
+            nameAbrev = "FUL"
         }
         "Bournemouth" -> {
-            image_time = R.drawable.icon_bournemouth
-            name_abrev = "BOU"
+            imageTime = R.drawable.icon_bournemouth
+            nameAbrev = "BOU"
         }
         "Luton Town" -> {
-            image_time = R.drawable.icon_luton_town
-            name_abrev = "LUT"
+            imageTime = R.drawable.icon_luton_town
+            nameAbrev = "LUT"
         }
         "Sheffield United" -> {
-            image_time = R.drawable.icon_sheffield_united
-            name_abrev = "SHU"
+            imageTime = R.drawable.icon_sheffield_united
+            nameAbrev = "SHU"
         }
         "Everton" -> {
-            image_time = R.drawable.icon_everton
-            name_abrev = "EVE"
+            imageTime = R.drawable.icon_everton
+            nameAbrev = "EVE"
         }
         "Burnley" -> {
-            image_time = R.drawable.icon_burnley
-            name_abrev = "BUR"
+            imageTime = R.drawable.icon_burnley
+            nameAbrev = "BUR"
         }
 
         else -> {
-            image_time = R.drawable.icon_error
-            name_abrev = "ERR"
+            imageTime = R.drawable.icon_error
+            nameAbrev = "ERR"
         }
     }
 
-    return listOf(image_time, name_abrev)
+    return listOf(imageTime, nameAbrev)
 }

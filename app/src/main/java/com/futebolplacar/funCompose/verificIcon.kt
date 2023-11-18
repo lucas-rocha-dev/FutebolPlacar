@@ -8,12 +8,12 @@ fun verificIcon(name: String, viewModel: ViewModelFut): Int{
     val imageTime: Int
     val campeonato = viewModel.campeonato.value
 
-    when(campeonato) {
-        "Brasileiro A" -> imageTime = iconSerieA(name)
-        "Brasileiro B" -> imageTime = iconSerieB(name)
-        "La Liga" -> imageTime = iconLaLiga(name)
-        "Premier" -> imageTime = iconPremier(name)
-        else -> imageTime = R.drawable.icon_error
+    imageTime = when(campeonato) {
+        "Brasileiro A" -> iconSerieA(name)
+        "Brasileiro B" -> iconSerieB(name)
+        "La Liga" -> iconLaLiga(name)
+        "Premier" -> iconPremier(name)
+        else -> R.drawable.icon_error
     }
 
     return imageTime
@@ -168,7 +168,7 @@ fun iconLaLiga(name:String):Int{
         "Alavés", "ALV" -> imageTime = R.drawable.icon_alaves
         "Cádiz", "CAD" -> imageTime = R.drawable.icon_cadiz
         "Mallorca", "MLC" -> imageTime = R.drawable.icon_mallorca
-        "Celta", "CVI", -> imageTime = R.drawable.icon_celta
+        "Celta", "CVI" -> imageTime = R.drawable.icon_celta
         "Granada", "GRA" -> imageTime = R.drawable.icon_granada
         "Almería", "ALM" -> imageTime = R.drawable.icon_almeria
 

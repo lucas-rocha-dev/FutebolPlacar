@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,7 +26,7 @@ import com.futebolplacar.viewModel.ViewModelFut
 
 
 @Composable
-fun selectCampeonato(viewModel: ViewModelFut, naveController: NavController){
+fun SelectCampeonato(viewModel: ViewModelFut, naveController: NavController){
    var checkName by remember { mutableStateOf(true) }
     viewModel.setConfigView("selectCampeonato")
 
@@ -51,6 +52,7 @@ fun selectCampeonato(viewModel: ViewModelFut, naveController: NavController){
                 Image(painterResource(id = R.drawable.logo_brasileirao_a),
                     contentDescription = "Image Brasileira A",
                     modifier = Modifier
+                        .size(150.dp,150.dp )
                         .clickable {
                             checkName = false
                             viewModel.classificacaoGeral.value.clear()
@@ -67,8 +69,10 @@ fun selectCampeonato(viewModel: ViewModelFut, naveController: NavController){
                 Image(painterResource(id = R.drawable.logo_brasileirao_b),
                     contentDescription = "Image Brasileira B",
                     modifier = Modifier
+                        .size(150.dp,150.dp )
                         .clickable {
                             checkName = false
+
                             viewModel.classificacaoGeral.value.clear()
                             viewModel.artilharia.value.artilheiros = mutableListOf()
                             viewModel.jogosDaRodada.value.clear()
@@ -87,6 +91,7 @@ fun selectCampeonato(viewModel: ViewModelFut, naveController: NavController){
                 Image(painterResource(id = R.drawable.logo_la_liga),
                     contentDescription = "Image La Liga",
                     modifier = Modifier
+                        .size(150.dp,150.dp )
                         .clickable {
                             checkName = false
                             viewModel.classificacaoGeral.value.clear()
@@ -106,6 +111,7 @@ fun selectCampeonato(viewModel: ViewModelFut, naveController: NavController){
                 Image(painterResource(id = R.drawable.logo_premier),
                     contentDescription = "Image Premier",
                     modifier = Modifier
+                        .size(150.dp,150.dp )
                         .clickable {
                             checkName = false
                             viewModel.classificacaoGeral.value.clear()

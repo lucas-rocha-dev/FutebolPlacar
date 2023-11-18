@@ -22,7 +22,6 @@ class ViewModelFut: ViewModel() {
     private val _nameWindow = MutableStateFlow(" ")
     val nameWindow = _nameWindow.asStateFlow()
 
-
     private val _campeonato = MutableStateFlow("")
     val campeonato = _campeonato.asStateFlow()
 
@@ -40,10 +39,6 @@ class ViewModelFut: ViewModel() {
 
     private val _nRodada = MutableStateFlow(1)
     val nRodada = _nRodada.asStateFlow()
-
-
-
-
 
     fun setConfigView(contextExec: String){
         when(contextExec) {
@@ -150,6 +145,33 @@ class ViewModelFut: ViewModel() {
             Log.e("setFirestore", "Erro durante a execução: ${exception.message}", exception)
         }
     }
+
+     fun attDatabase(){
+
+
+         object {
+             fun campeonatoSerieA(){
+             }
+             fun campeonatoSerieB(){
+
+             }
+             fun laLiga(){
+
+             }
+             fun premier(){
+
+             }
+
+
+
+
+
+
+
+         }
+
+    }
+
 
 }
 

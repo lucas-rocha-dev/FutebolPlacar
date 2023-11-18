@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,7 +26,7 @@ import com.futebolplacar.R
 import com.futebolplacar.viewModel.ViewModelFut
 
 @Composable
-fun navegationBar(navController: NavController, viewModel: ViewModelFut){
+fun NavegationBar(navController: NavController, viewModel: ViewModelFut){
     Row(horizontalArrangement = Arrangement.Center,
         modifier = Modifier
 
@@ -94,7 +93,7 @@ fun navegationBar(navController: NavController, viewModel: ViewModelFut){
                 .width(100.dp)
                 .height(50.dp)
                 .clickable {
-                    if (viewModel.artilharia.value.artilheiros.size < 1) {
+                    if (viewModel.artilharia.value.artilheiros.isEmpty()) {
                         viewModel.setFirestore(viewModel, "artilharia")
                     }
                     navController.navigate("artilhariaCompose")
