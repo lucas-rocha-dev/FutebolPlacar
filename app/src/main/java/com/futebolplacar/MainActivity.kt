@@ -30,7 +30,7 @@ import com.futebolplacar.adMob.AdMob
 import com.futebolplacar.compose.PoliticPrivac
 import com.futebolplacar.compose.ArtilhariaCompose
 import com.futebolplacar.compose.ClassificacaoGeralCompose
-import com.futebolplacar.compose.columnavegationCompose
+import com.futebolplacar.compose.ColumnavegationCompose
 import com.futebolplacar.compose.NavegationBar
 import com.futebolplacar.compose.RodadasCompose
 import com.futebolplacar.compose.SelectCampeonato
@@ -97,7 +97,7 @@ class MainActivity : ComponentActivity() {
                                 }
                                 if (Armazem.columView){
                                     Box(modifier = Modifier.padding(start = 20.dp)){
-                                        columnavegationCompose(navController, context)
+                                        ColumnavegationCompose(navController, context)
 
                                     }
                                 }

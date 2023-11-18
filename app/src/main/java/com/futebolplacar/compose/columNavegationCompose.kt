@@ -24,7 +24,7 @@ import com.futebolplacar.Armazem
 import com.futebolplacar.R
 
 @Composable
-fun columnavegationCompose(navController: NavController, context: Context){
+fun ColumnavegationCompose(navController: NavController, context: Context){
 
     Column(modifier = Modifier
         .background(

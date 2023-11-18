@@ -47,7 +47,7 @@ fun SelectCampeonato(viewModel: ViewModelFut, naveController: NavController){
                     .padding(top = 20.dp, bottom = 35.dp)
             )
 
-            //Brasileirao A e B
+
             Row {
                 Image(painterResource(id = R.drawable.logo_brasileirao_a),
                     contentDescription = "Image Brasileira A",
@@ -63,7 +63,9 @@ fun SelectCampeonato(viewModel: ViewModelFut, naveController: NavController){
 
                             viewModel.setCampeonatoAtual("Brasileiro A")
                             viewModel.setFirestore(viewModel, "classficicacaoGeral")
+                            viewModel.selectColorNav("Geral")
                             naveController.navigate("classificacaoGeralCompose")
+
                         })
 
                 Image(painterResource(id = R.drawable.logo_brasileirao_b),
@@ -82,11 +84,12 @@ fun SelectCampeonato(viewModel: ViewModelFut, naveController: NavController){
 
                             viewModel.setCampeonatoAtual("Brasileiro B")
                             viewModel.setFirestore(viewModel, "classficicacaoGeral")
+                            viewModel.selectColorNav("Geral")
                             naveController.navigate("classificacaoGeralCompose")
 
                         })
             }
-            //La Liga e Premier
+
             Row {
                 Image(painterResource(id = R.drawable.logo_la_liga),
                     contentDescription = "Image La Liga",
@@ -101,9 +104,9 @@ fun SelectCampeonato(viewModel: ViewModelFut, naveController: NavController){
 
                             viewModel.setNameWindow("La Liga")
 
-
                             viewModel.setCampeonatoAtual("La Liga")
                             viewModel.setFirestore(viewModel, "classficicacaoGeral")
+                            viewModel.selectColorNav("Geral")
                             naveController.navigate("classificacaoGeralCompose")
 
                         })
@@ -123,6 +126,7 @@ fun SelectCampeonato(viewModel: ViewModelFut, naveController: NavController){
 
                             viewModel.setCampeonatoAtual("Premier")
                             viewModel.setFirestore(viewModel, "classficicacaoGeral")
+                            viewModel.selectColorNav("Geral")
                             naveController.navigate("classificacaoGeralCompose")
 
                         })

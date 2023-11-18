@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -27,9 +28,14 @@ import com.futebolplacar.viewModel.ViewModelFut
 
 @Composable
 fun NavegationBar(navController: NavController, viewModel: ViewModelFut){
+
+
+    val colorGeral = viewModel.colorSelectGeral.collectAsState().value
+    val colorRodadas = viewModel.colorSelectRodadas.collectAsState().value
+    val colorArtilheiros = viewModel.colorSelectArtilheiros.collectAsState().value
+
     Row(horizontalArrangement = Arrangement.Center,
         modifier = Modifier
-
         .fillMaxWidth()) {
 
                 Column(verticalArrangement = Arrangement.Center,
@@ -38,10 +44,14 @@ fun NavegationBar(navController: NavController, viewModel: ViewModelFut){
                         .padding(start = 5.dp)
                         .width(100.dp)
                         .height(50.dp)
-                        .clickable { navController.navigate("classificacaoGeralCompose") }
+                        .clickable {
+                            viewModel.selectColorNav("Geral")
+                            navController.navigate("classificacaoGeralCompose")
+
+                        }
                         .background(
                             brush = Brush.horizontalGradient(
-                                colors = listOf(Color(0xFF092B0B), Color(0xFF195E1B)),
+                                colors = colorGeral,
                                 startX = 0f,
                                 endX = 1000f
                             )
@@ -64,15 +74,17 @@ fun NavegationBar(navController: NavController, viewModel: ViewModelFut){
                 .width(100.dp)
                 .height(50.dp)
                 .clickable {
-                    if (viewModel.jogosDaRodada.value.size < 1){
+                    if (viewModel.jogosDaRodada.value.size < 1) {
                         viewModel.setFirestore(viewModel, "rodadas")
 
                     }
+                    viewModel.selectColorNav("Rodadas")
+
                     navController.navigate("rodadasCompose")
                 }
                 .background(
                     brush = Brush.horizontalGradient(
-                        colors = listOf(Color(0xFF092B0B), Color(0xFF195E1B)),
+                        colors = colorRodadas,
                         startX = 0f,
                         endX = 1000f
                     )
@@ -95,12 +107,17 @@ fun NavegationBar(navController: NavController, viewModel: ViewModelFut){
                 .clickable {
                     if (viewModel.artilharia.value.artilheiros.isEmpty()) {
                         viewModel.setFirestore(viewModel, "artilharia")
+
                     }
                     navController.navigate("artilhariaCompose")
+
+                    viewModel.selectColorNav("Artilheiros")
+
+
                 }
                 .background(
                     brush = Brush.horizontalGradient(
-                        colors = listOf(Color(0xFF092B0B), Color(0xFF195E1B)),
+                        colors = colorArtilheiros,
                         startX = 0f,
                         endX = 1000f
                     )

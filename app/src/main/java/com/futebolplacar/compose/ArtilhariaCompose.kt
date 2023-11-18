@@ -71,7 +71,7 @@ fun ArtilhariaView(jogador: Posicao, viewModel: ViewModelFut){
 
         Box(
             Modifier
-                .padding(end = 3.dp)
+                .padding(end = 15.dp)
                 .fillMaxWidth(),
             contentAlignment = Alignment.CenterEnd,
             ) {

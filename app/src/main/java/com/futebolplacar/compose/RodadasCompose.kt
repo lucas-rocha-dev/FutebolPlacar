@@ -146,6 +146,7 @@ fun RodadaBar(rodadaAtual: Int, viewModel: ViewModelFut){
             Image(painterResource(id = R.drawable.icon_seta),
                 contentDescription ="seta voltar",
                 modifier = Modifier
+                    .padding(start = 15.dp, top = 10.dp)
                     .size(30.dp)
                     .clickable { clickRodadaBack(1, rodadaAtual, viewModel) },
                 alignment = Alignment.TopStart
@@ -162,6 +163,7 @@ fun RodadaBar(rodadaAtual: Int, viewModel: ViewModelFut){
             Image(painterResource(id = R.drawable.icon_seta),
                 contentDescription ="seta proxima",
                 modifier = Modifier
+                    .padding(end = 15.dp, top = 10.dp)
                     .size(30.dp)
                     .graphicsLayer(
                         scaleX = remember { -1f }

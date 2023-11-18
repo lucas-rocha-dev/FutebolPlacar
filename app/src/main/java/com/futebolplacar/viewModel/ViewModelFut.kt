@@ -3,6 +3,7 @@ package com.futebolplacar.viewModel
 
 
 import android.util.Log
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.futebolplacar.Armazem
@@ -39,6 +40,15 @@ class ViewModelFut: ViewModel() {
 
     private val _nRodada = MutableStateFlow(1)
     val nRodada = _nRodada.asStateFlow()
+
+    private val _colorSelectGeral = MutableStateFlow(mutableListOf(Color(0xFF092B0B), Color(0xFF092B0B)))
+    val colorSelectGeral = _colorSelectGeral.asStateFlow()
+    private val _colorSelectRodadas = MutableStateFlow(mutableListOf(Color(0xFF092B0B), Color(0xFF092B0B)))
+    val colorSelectRodadas = _colorSelectRodadas.asStateFlow()
+    private val _colorSelectArtilheiros = MutableStateFlow(mutableListOf(Color(0xFF092B0B), Color(0xFF092B0B)))
+    val colorSelectArtilheiros = _colorSelectArtilheiros.asStateFlow()
+
+
 
     fun setConfigView(contextExec: String){
         when(contextExec) {
@@ -146,30 +156,24 @@ class ViewModelFut: ViewModel() {
         }
     }
 
-     fun attDatabase(){
-
-
-         object {
-             fun campeonatoSerieA(){
-             }
-             fun campeonatoSerieB(){
-
-             }
-             fun laLiga(){
-
-             }
-             fun premier(){
-
-             }
-
-
-
-
-
-
-
-         }
-
+    fun selectColorNav(selecao: String){
+        when(selecao){
+            "Geral" -> {
+                _colorSelectGeral.value = mutableListOf(Color(0xFF138519), Color(0xFF27912E))
+                _colorSelectRodadas.value = mutableListOf(Color(0xFF092B0B), Color(0xFF092B0B))
+                _colorSelectArtilheiros.value = mutableListOf(Color(0xFF092B0B), Color(0xFF092B0B))
+            }
+            "Rodadas" -> {
+                _colorSelectGeral.value = mutableListOf(Color(0xFF092B0B), Color(0xFF092B0B))
+                _colorSelectRodadas.value = mutableListOf(Color(0xFF138519), Color(0xFF27912E))
+                _colorSelectArtilheiros.value = mutableListOf(Color(0xFF092B0B), Color(0xFF092B0B))
+            }
+            "Artilheiros" -> {
+                _colorSelectGeral.value = mutableListOf(Color(0xFF092B0B), Color(0xFF092B0B))
+                _colorSelectRodadas.value = mutableListOf(Color(0xFF092B0B), Color(0xFF092B0B))
+                _colorSelectArtilheiros.value = mutableListOf(Color(0xFF138519), Color(0xFF27912E))
+            }
+        }
     }
 
 
