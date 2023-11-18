@@ -1,5 +1,7 @@
 package com.futebolplacar.compose
 
+import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,22 +28,32 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.futebolplacar.datasource.ClassificacaoGeralA
+import com.futebolplacar.firestore.organizeRank
+import com.futebolplacar.funCompose.iconLaLiga
+import com.futebolplacar.funCompose.iconPremier
+import com.futebolplacar.funCompose.iconSerieA
+import com.futebolplacar.funCompose.iconSerieB
 import com.futebolplacar.funCompose.verificTime
 import com.futebolplacar.viewModel.ViewModelFut
 
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun classificacaoGeralCompose(viewModel: ViewModelFut){
     viewModel.setConfigView("classificacaoGeralCompose")
 
 
     val listClassificacaoGeral  by viewModel.classificacaoGeral.collectAsState()
-    val classificacaoGeralA = listClassificacaoGeral.sortedByDescending { it.P }
-    
-    if (classificacaoGeralA.size < 2){
+
+
+    if (listClassificacaoGeral.size < 2){
         Text(modifier = Modifier.padding(top = 40.dp, start = 60.dp),text = "Carregando...",
             fontSize = 30.sp, color = Color.White)
     }
+
+
+
+
 
 
     LazyColumn(modifier = Modifier
@@ -55,10 +67,10 @@ fun classificacaoGeralCompose(viewModel: ViewModelFut){
             topPontuacao()
         }
 
-        itemsIndexed(classificacaoGeralA) { index, time ->
+        itemsIndexed(listClassificacaoGeral) { index, time ->
 
 
-            ClassificacaoGeralItem(time, index)
+            ClassificacaoGeralItem(time, index, viewModel)
         }
  }
 
@@ -67,8 +79,8 @@ fun classificacaoGeralCompose(viewModel: ViewModelFut){
 
 }
 @Composable
-fun ClassificacaoGeralItem(classificacao: ClassificacaoGeralA, index: Int) {
- val (icone_time, nameAbrev) = verificTime(classificacao.name_time)
+fun ClassificacaoGeralItem(classificacao: ClassificacaoGeralA, index: Int, viewModel: ViewModelFut) {
+ val (icone_time, nameAbrev) = verificTime(classificacao.name_time, viewModel)
  var posicao_time = index +1
  var color_colocacao = Color.White
  if(posicao_time < 5){

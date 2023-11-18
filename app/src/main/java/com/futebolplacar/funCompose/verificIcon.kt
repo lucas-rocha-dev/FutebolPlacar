@@ -9,12 +9,11 @@ fun verificIcon(name: String, viewModel: ViewModelFut): Int{
     val campeonato = viewModel.campeonato.value
 
     when(campeonato) {
-        "Brasileirao A" -> imageTime = iconSerieA(name)
+        "Brasileiro A" -> imageTime = iconSerieA(name)
         "Brasileiro B" -> imageTime = iconSerieB(name)
         "La Liga" -> imageTime = iconLaLiga(name)
-        "Premier" -> imageTime = iconSerieA(name)
+        "Premier" -> imageTime = iconPremier(name)
         else -> imageTime = R.drawable.icon_error
-
     }
 
     return imageTime
@@ -164,7 +163,7 @@ fun iconLaLiga(name:String):Int{
         "Rayo Vallecano", "RVL" -> imageTime = R.drawable.icon_rayo_vallecano
         "Getafe", "GET" -> imageTime = R.drawable.icon_getafe
         "Osasuna","OSA" -> imageTime = R.drawable.icon_osasuna
-        "Sevila", "SEV" -> imageTime = R.drawable.icon_sevilla
+        "Sevilla", "SEV" -> imageTime = R.drawable.icon_sevilla
         "Villarreal" ,"VIL" -> imageTime = R.drawable.icon_villar_real
         "Alavés", "ALV" -> imageTime = R.drawable.icon_alaves
         "Cádiz", "CAD" -> imageTime = R.drawable.icon_cadiz
@@ -179,3 +178,29 @@ fun iconLaLiga(name:String):Int{
     return imageTime
 }
 
+fun iconPremier(teamName: String): Int {
+    return when (teamName) {
+        "Manchester City", "MAC" -> R.drawable.icon_manchester_city
+        "Liverpool", "LIV" -> R.drawable.icon_liverpool
+        "Arsenal", "ARS" -> R.drawable.icon_arsenal
+        "Tottenham", "TOT" -> R.drawable.icon_tottenham
+        "Aston Villa", "ASV" -> R.drawable.icon_aston_villa
+        "Manchester United", "MAN" -> R.drawable.icon_manchester_united
+        "Newcastle", "NEW" -> R.drawable.icon_newcastle
+        "Brighton", "BFC" -> R.drawable.icon_brighton
+        "West Ham", "WTH" -> R.drawable.icon_west_ham
+        "Chelsea", "CHE" -> R.drawable.icon_chelsea
+        "Brentford", "BRE" -> R.drawable.icon_brentford
+        "Wolverhampton", "WOL" -> R.drawable.icon_wolverhampton
+        "Crystal Palace", "CPA" -> R.drawable.icon_crystal_palace
+        "Nottingham Forest", "NOT" -> R.drawable.icon_nottingham_forest
+        "Fulham", "FUL" -> R.drawable.icon_fulham
+        "Bournemouth", "BOU" -> R.drawable.icon_bournemouth
+        "Luton Town", "LUT" -> R.drawable.icon_luton_town
+        "Sheffield United", "SHU" -> R.drawable.icon_sheffield_united
+        "Everton", "EVE" -> R.drawable.icon_everton
+        "Burnley", "BUR" -> R.drawable.icon_burnley
+
+        else -> R.drawable.icon_error
+    }
+}

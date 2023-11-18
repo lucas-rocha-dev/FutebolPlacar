@@ -1,7 +1,6 @@
 package com.futebolplacar.firestore
 
 import android.util.Log
-import com.futebolplacar.Armazem
 import com.futebolplacar.datasource.Artilharia
 import com.futebolplacar.datasource.ClassificacaoGeralA
 import com.futebolplacar.datasource.Jogo
@@ -39,7 +38,8 @@ suspend fun getClassificacaoGeral(docRef: CollectionReference, viewModel: ViewMo
         }
 
         withContext(Dispatchers.Main) {
-            viewModel.setClassificacaoGeral(classificacaoGeralList)
+            val listOrnanizada = organizeRank(classificacaoGeralList, viewModel)
+            viewModel.setClassificacaoGeral(listOrnanizada)
             Log.d("getFirestore", "getClassificacaoGeral executado com sucesso!")
         }
 
@@ -122,4 +122,60 @@ suspend fun getRodadaAtual(docRef: CollectionReference, viewModel: ViewModelFut)
     viewModel.setNrodada(n_rodada.toInt() - 1)
 
     Log.d("getFirestore", "getRodadaAtual executado com sucesso: ${n_rodada}")
+}
+
+fun organizeRank(classificacaoGeralList: MutableList<ClassificacaoGeralA>,
+                 viwModel: ViewModelFut): MutableList<ClassificacaoGeralA>{
+    var newList = classificacaoGeralList
+    val campeonato = viwModel.campeonato.value
+
+    when(campeonato){
+        "Brasileiro A" -> {
+            newList = newList
+                .asSequence()
+                .sortedByDescending { it.GP.toInt() }
+                .sortedByDescending { it.SG.toInt() }
+                .sortedByDescending { it.V.toInt() }
+                .sortedByDescending { it.P.toInt() }
+                .toMutableList()
+
+            Log.i("campeonato", "Verific 1${campeonato}")
+
+
+        }
+        "Brasileiro B" -> {
+            newList = newList
+                .asSequence()
+                .sortedByDescending { it.GP.toInt() }
+                .sortedByDescending { it.SG.toInt() }
+                .sortedByDescending { it.V.toInt() }
+                .sortedByDescending { it.P.toInt() }
+                .toMutableList()
+            Log.i("campeonato", "Verific 2${campeonato}")
+
+        }
+        "La Liga" -> {
+            newList = newList
+                .asSequence()
+                .sortedByDescending { it.V.toInt() }
+                .sortedByDescending { it.GP.toInt() }
+                .sortedByDescending { it.SG.toInt() }
+                .sortedByDescending { it.P.toInt() }
+                .toMutableList()
+            Log.i("campeonato", "Verific 3${campeonato}")
+        }
+        "Premier" ->    {
+            newList = newList
+                .asSequence()
+                .sortedByDescending { it.V.toInt() }
+                .sortedByDescending { it.GP.toInt() }
+                .sortedByDescending { it.SG.toInt() }
+                .sortedByDescending { it.P.toInt() }
+                .toMutableList()
+            Log.i("campeonato", "Verific 4${campeonato}")
+        }
+    }
+
+    return newList
+
 }
