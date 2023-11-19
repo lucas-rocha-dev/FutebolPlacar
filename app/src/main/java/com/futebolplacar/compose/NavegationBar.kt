@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.futebolplacar.R
+import com.futebolplacar.countInterstitial
 import com.futebolplacar.viewModel.ViewModelFut
 
 @Composable
@@ -45,6 +46,8 @@ fun NavegationBar(navController: NavController, viewModel: ViewModelFut){
                         .width(100.dp)
                         .height(50.dp)
                         .clickable {
+                            countInterstitial++
+
                             viewModel.selectColorNav("Geral")
                             navController.navigate("classificacaoGeralCompose")
 
@@ -74,6 +77,9 @@ fun NavegationBar(navController: NavController, viewModel: ViewModelFut){
                 .width(100.dp)
                 .height(50.dp)
                 .clickable {
+
+                    countInterstitial++
+
                     if (viewModel.jogosDaRodada.value.size < 1) {
                         viewModel.setFirestore(viewModel, "rodadas")
 
@@ -105,6 +111,9 @@ fun NavegationBar(navController: NavController, viewModel: ViewModelFut){
                 .width(100.dp)
                 .height(50.dp)
                 .clickable {
+
+                    countInterstitial++
+
                     if (viewModel.artilharia.value.artilheiros.isEmpty()) {
                         viewModel.setFirestore(viewModel, "artilharia")
 

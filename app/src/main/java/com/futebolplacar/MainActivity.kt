@@ -15,7 +15,10 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -26,7 +29,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.futebolplacar.adMob.AdMob
+import com.futebolplacar.adMob.BannerAdMob
+import com.futebolplacar.adMob.CondicionalAdmob
+import com.futebolplacar.adMob.loadInterstitial
+import com.futebolplacar.adMob.removeInterstitial
+import com.futebolplacar.adMob.timerAd
 import com.futebolplacar.compose.PoliticPrivac
 import com.futebolplacar.compose.ArtilhariaCompose
 import com.futebolplacar.compose.ClassificacaoGeralCompose
@@ -37,21 +44,31 @@ import com.futebolplacar.compose.SelectCampeonato
 import com.futebolplacar.compose.TopBar
 import com.futebolplacar.ui.theme.FutebolPlacarTheme
 import com.futebolplacar.viewModel.ViewModelFut
+import com.google.android.gms.ads.MobileAds
 
-
+var countInterstitial by mutableStateOf(0)
+var checkTimerAd  by mutableStateOf(false)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+        loadInterstitial(this)
+        timerAd()
         setContent {
 
             FutebolPlacarTheme {
+
+                MobileAds.initialize(this){}
 
                 val viewModel by viewModels<ViewModelFut>()
 
                 val navController = rememberNavController()
 
                 val context = LocalContext.current
+
+
+                CondicionalAdmob()
 
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier
@@ -107,7 +124,7 @@ class MainActivity : ComponentActivity() {
                                     .align(Alignment.BottomCenter)
                                     .fillMaxWidth()
                                 ) {
-                                    AdMob()
+                                    BannerAdMob()
                                 }
                             }
                         }
@@ -118,6 +135,12 @@ class MainActivity : ComponentActivity() {
             }
 
         }
+
+    }
+
+    override fun onDestroy() {
+        removeInterstitial()
+        super.onDestroy()
 
     }
 
@@ -147,3 +170,4 @@ fun MyAppNavHost(
 
     }
 }
+

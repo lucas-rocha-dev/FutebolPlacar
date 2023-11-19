@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.futebolplacar.R
+import com.futebolplacar.countInterstitial
 import com.futebolplacar.viewModel.ViewModelFut
 
 
@@ -54,6 +55,9 @@ fun SelectCampeonato(viewModel: ViewModelFut, naveController: NavController){
                     modifier = Modifier
                         .size(150.dp,150.dp )
                         .clickable {
+
+                            countInterstitial++
+
                             checkName = false
                             viewModel.classificacaoGeral.value.clear()
                             viewModel.artilharia.value.artilheiros = mutableListOf()
@@ -73,6 +77,8 @@ fun SelectCampeonato(viewModel: ViewModelFut, naveController: NavController){
                     modifier = Modifier
                         .size(150.dp,150.dp )
                         .clickable {
+                            countInterstitial++
+
                             checkName = false
 
                             viewModel.classificacaoGeral.value.clear()
@@ -96,6 +102,9 @@ fun SelectCampeonato(viewModel: ViewModelFut, naveController: NavController){
                     modifier = Modifier
                         .size(150.dp,150.dp )
                         .clickable {
+
+                            countInterstitial++
+
                             checkName = false
                             viewModel.classificacaoGeral.value.clear()
                             viewModel.artilharia.value.artilheiros = mutableListOf()
@@ -116,6 +125,9 @@ fun SelectCampeonato(viewModel: ViewModelFut, naveController: NavController){
                     modifier = Modifier
                         .size(150.dp,150.dp )
                         .clickable {
+
+                            countInterstitial++
+
                             checkName = false
                             viewModel.classificacaoGeral.value.clear()
                             viewModel.artilharia.value.artilheiros = mutableListOf()
