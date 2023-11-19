@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -35,115 +36,129 @@ fun SelectCampeonato(viewModel: ViewModelFut, naveController: NavController){
         viewModel.setNameWindow("Futebol Placar")
     }
 
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize()) {
+    LazyColumn {
+        item{
 
-            Text(
-                text = "Selecione o Campeonato",
-                color = Color.White,
-                fontSize = 27.sp,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .padding(top = 20.dp, bottom = 35.dp)
-            )
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxSize()) {
 
-
-            Row {
-                Image(painterResource(id = R.drawable.logo_brasileirao_a),
-                    contentDescription = "Image Brasileira A",
+                Text(
+                    text = "Selecione o Campeonato",
+                    color = Color.White,
+                    fontSize = 27.sp,
+                    textAlign = TextAlign.Center,
                     modifier = Modifier
-                        .size(150.dp,150.dp )
-                        .clickable {
-
-                            countInterstitial++
-
-                            checkName = false
-                            viewModel.classificacaoGeral.value.clear()
-                            viewModel.artilharia.value.artilheiros = mutableListOf()
-                            viewModel.jogosDaRodada.value.clear()
-
-                            viewModel.setNameWindow("Brasileirão Série A")
-
-                            viewModel.setCampeonatoAtual("Brasileiro A")
-                            viewModel.setFirestore(viewModel, "classficicacaoGeral")
-                            viewModel.selectColorNav("Geral")
-                            naveController.navigate("classificacaoGeralCompose")
-
-                        })
-
-                Image(painterResource(id = R.drawable.logo_brasileirao_b),
-                    contentDescription = "Image Brasileira B",
-                    modifier = Modifier
-                        .size(150.dp,150.dp )
-                        .clickable {
-                            countInterstitial++
-
-                            checkName = false
-
-                            viewModel.classificacaoGeral.value.clear()
-                            viewModel.artilharia.value.artilheiros = mutableListOf()
-                            viewModel.jogosDaRodada.value.clear()
-
-                            viewModel.setNameWindow("Brasileirão Série B")
+                        .padding(top = 20.dp, bottom = 35.dp)
+                )
 
 
-                            viewModel.setCampeonatoAtual("Brasileiro B")
-                            viewModel.setFirestore(viewModel, "classficicacaoGeral")
-                            viewModel.selectColorNav("Geral")
-                            naveController.navigate("classificacaoGeralCompose")
+                Row {
+                    Image(painterResource(id = R.drawable.logo_brasileirao_a),
+                        contentDescription = "Image Brasileira A",
+                        modifier = Modifier
+                            .size(150.dp, 150.dp)
+                            .clickable {
 
-                        })
+                                countInterstitial++
+
+                                checkName = false
+                                viewModel.classificacaoGeral.value.clear()
+                                viewModel.artilharia.value.artilheiros = mutableListOf()
+                                viewModel.jogosDaRodada.value.clear()
+
+                                viewModel.setNameWindow("Brasileirão Série A")
+                                //////////ANTENCAO AQUI, RETIRAR CONSULTA DA RODADA POR AQUI
+
+                                viewModel.setCampeonatoAtual("Brasileiro A")
+                                viewModel.setFirestore(viewModel, "classficicacaoGeral")
+                                viewModel.selectColorNav("Geral")
+                                naveController.navigate("classificacaoGeralCompose")
+
+
+                                viewModel.setFirestore(viewModel, "rodadas")
+
+
+                            })
+
+                    Image(painterResource(id = R.drawable.logo_brasileirao_b),
+                        contentDescription = "Image Brasileira B",
+                        modifier = Modifier
+                            .size(150.dp, 150.dp)
+                            .clickable {
+                                countInterstitial++
+
+                                checkName = false
+
+                                viewModel.classificacaoGeral.value.clear()
+                                viewModel.artilharia.value.artilheiros = mutableListOf()
+                                viewModel.jogosDaRodada.value.clear()
+
+                                viewModel.setNameWindow("Brasileirão Série B")
+
+
+                                viewModel.setCampeonatoAtual("Brasileiro B")
+                                viewModel.setFirestore(viewModel, "classficicacaoGeral")
+                                viewModel.selectColorNav("Geral")
+                                naveController.navigate("classificacaoGeralCompose")
+
+                            })
+                }
+
+                Row {
+                    Image(painterResource(id = R.drawable.logo_la_liga),
+                        contentDescription = "Image La Liga",
+                        modifier = Modifier
+                            .size(150.dp, 150.dp)
+                            .clickable {
+
+                                countInterstitial++
+
+                                checkName = false
+                                viewModel.classificacaoGeral.value.clear()
+                                viewModel.artilharia.value.artilheiros = mutableListOf()
+                                viewModel.jogosDaRodada.value.clear()
+
+
+                                viewModel.setNameWindow("La Liga")
+
+                                viewModel.setCampeonatoAtual("La Liga")
+                                viewModel.setFirestore(viewModel, "classficicacaoGeral")
+                                viewModel.selectColorNav("Geral")
+                                naveController.navigate("classificacaoGeralCompose")
+
+                            })
+
+                    Image(painterResource(id = R.drawable.logo_premier),
+                        contentDescription = "Image Premier",
+                        modifier = Modifier
+                            .size(150.dp, 150.dp)
+                            .clickable {
+
+                                countInterstitial++
+
+                                checkName = false
+                                viewModel.classificacaoGeral.value.clear()
+                                viewModel.artilharia.value.artilheiros = mutableListOf()
+                                viewModel.jogosDaRodada.value.clear()
+
+
+                                viewModel.setNameWindow("Premier League")
+
+                                viewModel.setCampeonatoAtual("Premier")
+                                viewModel.setFirestore(viewModel, "classficicacaoGeral")
+                                viewModel.selectColorNav("Geral")
+                                naveController.navigate("classificacaoGeralCompose")
+
+                            })
+                }
             }
 
-            Row {
-                Image(painterResource(id = R.drawable.logo_la_liga),
-                    contentDescription = "Image La Liga",
-                    modifier = Modifier
-                        .size(150.dp,150.dp )
-                        .clickable {
 
-                            countInterstitial++
-
-                            checkName = false
-                            viewModel.classificacaoGeral.value.clear()
-                            viewModel.artilharia.value.artilheiros = mutableListOf()
-                            viewModel.jogosDaRodada.value.clear()
-
-
-                            viewModel.setNameWindow("La Liga")
-
-                            viewModel.setCampeonatoAtual("La Liga")
-                            viewModel.setFirestore(viewModel, "classficicacaoGeral")
-                            viewModel.selectColorNav("Geral")
-                            naveController.navigate("classificacaoGeralCompose")
-
-                        })
-
-                Image(painterResource(id = R.drawable.logo_premier),
-                    contentDescription = "Image Premier",
-                    modifier = Modifier
-                        .size(150.dp,150.dp )
-                        .clickable {
-
-                            countInterstitial++
-
-                            checkName = false
-                            viewModel.classificacaoGeral.value.clear()
-                            viewModel.artilharia.value.artilheiros = mutableListOf()
-                            viewModel.jogosDaRodada.value.clear()
-
-
-                            viewModel.setNameWindow("Premier League")
-
-                            viewModel.setCampeonatoAtual("Premier")
-                            viewModel.setFirestore(viewModel, "classficicacaoGeral")
-                            viewModel.selectColorNav("Geral")
-                            naveController.navigate("classificacaoGeralCompose")
-
-                        })
-            }
         }
+    }
+
+
 
 
 }

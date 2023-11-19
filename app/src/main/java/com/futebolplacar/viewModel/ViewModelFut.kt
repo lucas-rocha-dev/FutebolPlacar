@@ -13,6 +13,7 @@ import com.futebolplacar.datasource.RodadasA
 import com.futebolplacar.firestore.getArtilharia
 import com.futebolplacar.firestore.getClassificacaoGeral
 import com.futebolplacar.firestore.getRodadaAtual
+import com.futebolplacar.firestore.getRodadaById
 import com.futebolplacar.firestore.getRodadas
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -103,7 +104,6 @@ class ViewModelFut: ViewModel() {
                     classificacaoRef = "classificacao_geral"
                     artilhariaRef = "artilharia"
                     rodadaRef= "rodada_atual"
-                    Log.e("campeonato atual", campeonato.value)
 
 
                 }
@@ -112,7 +112,6 @@ class ViewModelFut: ViewModel() {
                     classificacaoRef = "classificacao_geral_b"
                     artilhariaRef = "artilharia_b"
                     rodadaRef= "rodada_atual_b"
-                    Log.e("campeonato atual", campeonato.value)
                 }
                 "La Liga" -> {
                     jogosRodadaRef = "jogos_rodada_la_liga"
@@ -141,8 +140,8 @@ class ViewModelFut: ViewModel() {
                 getClassificacaoGeral(docRefClassificacaoGeral, viewModel)
             }
             if(request == "rodadas"){
-                getRodadas(docRefRodadas, viewModel)
                 getRodadaAtual(docRefRodadaAtual, viewModel)
+                getRodadaById(docRefRodadas, viewModel)
 
             }
             if(request == "artilharia"){

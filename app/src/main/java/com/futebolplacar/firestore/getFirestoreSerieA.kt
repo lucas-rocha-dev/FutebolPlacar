@@ -90,6 +90,7 @@ suspend fun getArtilharia(docRef: CollectionReference, viewModel: ViewModelFut){
     val artilharia: List<DocumentSnapshot> = docRef.get().await().documents
 
 
+
     val artilhariaObjeto = mutableListOf<Posicao>()
     for (artilheiros in artilharia){
         val jogador = Posicao(
@@ -100,18 +101,16 @@ suspend fun getArtilharia(docRef: CollectionReference, viewModel: ViewModelFut){
         )
         artilhariaObjeto.add(jogador)
 
-
     }
 
-   //Armazem.artilharia = Artilharia(artilhariaObjeto)
     viewModel.setArtilharia(Artilharia(artilhariaObjeto))
-
 
 
 }
 
 suspend fun getRodadaAtual(docRef: CollectionReference, viewModel: ViewModelFut) {
     val rodadaAtual: List<DocumentSnapshot> = docRef.get().await().documents
+
     var nRodada = ""
     for (rodada in rodadaAtual) {
         val getRodada = rodada.getString("rodada_atual").toString()
@@ -174,5 +173,41 @@ fun organizeRank(classificacaoGeralList: MutableList<ClassificacaoGeralA>,
     }
 
     return newList
+
+}
+
+suspend fun getRodadaById(docRef: CollectionReference, viewModel: ViewModelFut){
+    val rodadaAtual = viewModel.nRodada.value.toString()
+    val doc = docRef.document(rodadaAtual).get().await()
+
+    val rodadasObjeto = mutableListOf<RodadasA>()
+
+
+        val rodadaId = doc.id
+        val listaJogo = mutableListOf<Jogo>()
+
+
+        val partidasRef = doc.reference.collection("partidas")
+        val partidas: List<DocumentSnapshot> = partidasRef.get().await().documents
+
+        for (jogos in partidas){
+
+            val jogosObjeto = Jogo(
+                nJogo = jogos.id,
+                dataLocal = jogos.getString("data_local").toString(),
+                timeA = jogos.getString("Time_A").toString(),
+                golsA = jogos.getString("Gols_A").toString(),
+                timeB =  jogos.getString("Time_B").toString(),
+                golsB = jogos.getString("Gols_B").toString()
+            )
+            listaJogo.add(jogosObjeto)
+
+        }
+        val rodadasGet = RodadasA(rodadaId, listaJogo)
+        rodadasObjeto.add(rodadasGet)
+
+
+    viewModel.setJogosDaRodada(rodadasObjeto)
+    Log.i("getRodadaById", "${viewModel.jogosDaRodada.value}")
 
 }
