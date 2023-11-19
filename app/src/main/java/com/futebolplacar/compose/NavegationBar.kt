@@ -80,10 +80,9 @@ fun NavegationBar(navController: NavController, viewModel: ViewModelFut){
 
                     countInterstitial++
 
-                    if (viewModel.jogosDaRodada.value.size < 1) {
-                        viewModel.setFirestore(viewModel, "rodadas")
+                    viewModel.setFirestore(viewModel, "rodadas")
 
-                    }
+
                     viewModel.selectColorNav("Rodadas")
 
                     navController.navigate("rodadasCompose")

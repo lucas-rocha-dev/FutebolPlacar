@@ -59,7 +59,6 @@ class MainActivity : ComponentActivity() {
 
             FutebolPlacarTheme {
 
-                MobileAds.initialize(this){}
 
                 val viewModel by viewModels<ViewModelFut>()
 
@@ -67,10 +66,11 @@ class MainActivity : ComponentActivity() {
 
                 val context = LocalContext.current
 
+                MobileAds.initialize(this){}
 
                 CondicionalAdmob()
 
-                // A surface container using the 'background' color from the theme
+
                 Surface(modifier = Modifier
 
                     .fillMaxSize(),

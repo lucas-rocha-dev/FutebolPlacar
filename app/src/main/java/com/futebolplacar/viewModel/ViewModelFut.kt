@@ -14,7 +14,6 @@ import com.futebolplacar.firestore.getArtilharia
 import com.futebolplacar.firestore.getClassificacaoGeral
 import com.futebolplacar.firestore.getRodadaAtual
 import com.futebolplacar.firestore.getRodadaById
-import com.futebolplacar.firestore.getRodadas
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -139,11 +138,20 @@ class ViewModelFut: ViewModel() {
             if(request == "classficicacaoGeral"){
                 getClassificacaoGeral(docRefClassificacaoGeral, viewModel)
             }
+
             if(request == "rodadas"){
                 getRodadaAtual(docRefRodadaAtual, viewModel)
                 getRodadaById(docRefRodadas, viewModel)
 
             }
+
+            if(request == "rodadas click"){
+                getRodadaById(docRefRodadas, viewModel)
+
+            }
+
+
+
             if(request == "artilharia"){
                 getArtilharia(docRefArtilharia, viewModel)
             }

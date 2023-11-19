@@ -68,7 +68,7 @@ fun SelectCampeonato(viewModel: ViewModelFut, naveController: NavController){
                                 viewModel.jogosDaRodada.value.clear()
 
                                 viewModel.setNameWindow("Brasileirão Série A")
-                                //////////ANTENCAO AQUI, RETIRAR CONSULTA DA RODADA POR AQUI
+
 
                                 viewModel.setCampeonatoAtual("Brasileiro A")
                                 viewModel.setFirestore(viewModel, "classficicacaoGeral")
@@ -76,7 +76,6 @@ fun SelectCampeonato(viewModel: ViewModelFut, naveController: NavController){
                                 naveController.navigate("classificacaoGeralCompose")
 
 
-                                viewModel.setFirestore(viewModel, "rodadas")
 
 
                             })

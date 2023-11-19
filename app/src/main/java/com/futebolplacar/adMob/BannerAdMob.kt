@@ -17,11 +17,10 @@ fun BannerAdMob(){
         .height(101.dp))
 
     {
-
         //ca-app-pub-3348435305370965/1753908718 id real
-        //ca-app-pub-3940256099942544/6300978111 id para testes
+        //ca-app-pub-3940256099942544/6300978111 id for  test
 
-        val adIdBanner = "ca-app-pub-3940256099942544/6300978111"
+        val adIdBanner = "ca-app-pub-3348435305370965/1753908718"
 
         val adWidth = LocalConfiguration.current.screenWidthDp
         val adHeight = 100

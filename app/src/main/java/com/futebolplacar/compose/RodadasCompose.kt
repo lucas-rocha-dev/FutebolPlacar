@@ -42,9 +42,10 @@ fun RodadasCompose(viewModel: ViewModelFut){
     val getRodadas by viewModel.jogosDaRodada.collectAsState()
     val nRodada by viewModel.nRodada.collectAsState()
 
-   val classificacaoGeralA = getRodadas.sortedBy { it.nRodada.toInt() }
-    if(classificacaoGeralA.size > 2){
-        RodadasFilter(classificacaoGeralA, nRodada, viewModel)
+   val rodadasView = getRodadas.sortedBy { it.nRodada.toInt() }
+
+   if(rodadasView.isNotEmpty()){
+        RodadasFilter(rodadasView, nRodada, viewModel)
     } else {
         Text(modifier = Modifier.padding(top = 40.dp, start = 60.dp),text = "Carregando...",
             fontSize = 30.sp, color = Color.White)
@@ -55,7 +56,7 @@ fun RodadasCompose(viewModel: ViewModelFut){
 
 @Composable
 fun RodadasFilter(rodadas: List<RodadasA>, rodadaAtual: Int, viewModel: ViewModelFut){
-   val rodadaView = rodadas[rodadaAtual].jogos.sortedBy { it.nJogo.toInt() }
+   val rodadaView = rodadas[0].jogos.sortedBy { it.nJogo.toInt() }
 
     LazyColumn(modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally) {
@@ -148,7 +149,7 @@ fun RodadaBar(rodadaAtual: Int, viewModel: ViewModelFut){
                 modifier = Modifier
                     .padding(start = 15.dp, top = 10.dp)
                     .size(30.dp)
-                    .clickable { clickRodadaBack(1, rodadaAtual, viewModel) },
+                    .clickable { clickRodadaBack(numeroRodada, viewModel) },
                 alignment = Alignment.TopStart
 
             )
@@ -168,15 +169,18 @@ fun RodadaBar(rodadaAtual: Int, viewModel: ViewModelFut){
                     .graphicsLayer(
                         scaleX = remember { -1f }
                     )
-                    .clickable { clickRodadaProx(1, rodadaAtual, viewModel) }
+                    .clickable { clickRodadaProx(numeroRodada, viewModel) }
 
             )
         }
 }
-fun clickRodadaProx(valor: Int, rodadaAtual: Int, viewModel: ViewModelFut){
-    if(rodadaAtual < 37){
-        viewModel.setNrodada(rodadaAtual + valor)
-        Log.i("n_rodada", rodadaAtual.toString())
+
+fun clickRodadaProx(rodadaAtual: Int, viewModel: ViewModelFut){
+    if(rodadaAtual < 38){
+        val nRodada = viewModel.nRodada.value + 1
+        viewModel.setNrodada(nRodada)
+
+        viewModel.setFirestore(viewModel, "rodadas click")
 
     } else {
         Log.i("n_rodada", rodadaAtual.toString() + "valor maior ou igual 39")
@@ -185,10 +189,13 @@ fun clickRodadaProx(valor: Int, rodadaAtual: Int, viewModel: ViewModelFut){
 
 
 }
-fun clickRodadaBack(valor: Int, rodadaAtual: Int, viewModel: ViewModelFut){
-    if(rodadaAtual > 0){
-        viewModel.setNrodada(rodadaAtual - valor)
-        Log.i("n_rodada", rodadaAtual.toString())
+fun clickRodadaBack(rodadaAtual: Int, viewModel: ViewModelFut){
+    if(rodadaAtual > 1){
+        val nRodada = viewModel.nRodada.value - 1
+        viewModel.setNrodada(nRodada)
+
+        viewModel.setFirestore(viewModel, "rodadas click")
+
 
     } else {
         Log.i("n_rodada", rodadaAtual.toString() + "numero da rodada menor que >=1")

@@ -14,12 +14,12 @@ var mInterstitialAd: InterstitialAd? = null
 
 fun loadInterstitial(context: Context) {
 
-//   teste  ca-app-pub-3940256099942544/1033173712
+//   test  ca-app-pub-3940256099942544/1033173712
 // real ca-app-pub-3348435305370965/7177511818
 
     InterstitialAd.load(
         context,
-        "ca-app-pub-3940256099942544/1033173712", //Change this with your own AdUnitID!
+        "ca-app-pub-3348435305370965/7177511818", //Change this with your own AdUnitID!
 
         AdRequest.Builder().build(),
         object : InterstitialAdLoadCallback() {
